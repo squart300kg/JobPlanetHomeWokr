@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 // (서버 확장 대비)flavorType에 따라 다음의 방식으로 URL이 설정됩니다.
@@ -84,7 +85,9 @@ android {
     }
 
 }
-
+kapt {
+    correctErrorTypes true
+}
 dependencies {
 
     // LOCAL
@@ -102,9 +105,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
-    // koin -> hilt전환 예정
-    implementation "io.insert-koin:koin-android:2.2.3"
-    implementation "io.insert-koin:koin-androidx-viewmodel:2.2.3"
+    // DI
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 
     // UI
 //    implementation 'androidx.core:core-ktx:1.9.0'
