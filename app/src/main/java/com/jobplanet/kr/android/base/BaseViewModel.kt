@@ -8,9 +8,7 @@ import com.securepreferences.SecurePreferences
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 
-open class BaseViewModel(
-    private val securePreferences: SecurePreferences
-): ViewModel() {
+open class BaseViewModel: ViewModel() {
 
     protected val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>

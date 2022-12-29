@@ -12,9 +12,5 @@ open class Application: Application() {
 
     }
 
-    private fun koinInitialize() {
-
-
-    }
 }
 
