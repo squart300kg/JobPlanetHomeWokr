@@ -12,7 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/recrutesSearchHeight"
+            app:layout_constraintTop_toTopOf="parent"
+            android:drawableStart="@drawable/icon_symbol"
+            android:hint="@string/searchHint"
+            android:drawablePadding=""
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
