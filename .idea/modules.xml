@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TheWarOfStars.iml" filepath="$PROJECT_DIR$/.idea/modules/TheWarOfStars.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JobPlanetHomeWork.iml" filepath="$PROJECT_DIR$/.idea/modules/JobPlanetHomeWork.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/JobPlanetHomeWork.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/JobPlanetHomeWork.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/JobPlanetHomeWork.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/JobPlanetHomeWork.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/JobPlanetHomeWork.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/JobPlanetHomeWork.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/JobPlanetHomeWork.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/JobPlanetHomeWork.app.unitTest.iml" />
     </modules>
   </component>
 </project>

@@ -21,7 +21,6 @@ open class Application: Application() {
     }
 
     private fun koinInitialize() {
-
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@Application)
@@ -29,17 +28,9 @@ open class Application: Application() {
                 preferencesModule,
                 networkModule,
                 repositoryModule,
-                viewModelModule,
-                viewModule))
+                viewModelModule))
         }
 
     }
-
-//    open fun configureDi() = startKoin {
-//        androidLogger(Level.ERROR)
-//        androidContext(this@Application)
-//        modules(listOf(preferencesModule, networkModule ,repositoryModule ,viewModelModule))
-//    }
-
 }
 
