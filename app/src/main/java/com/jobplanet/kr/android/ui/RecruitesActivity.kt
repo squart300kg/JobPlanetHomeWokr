@@ -1,6 +1,7 @@
 package com.jobplanet.kr.android.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseActivity
 import com.jobplanet.kr.android.databinding.ActivityRecruitsBinding
@@ -15,12 +16,20 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity_recruits) {
 
-    private val backButtonCloseHandler = BackButtonCloseHandler(this)
+    private val backButtonCloseHandler by lazy { BackButtonCloseHandler(this) }
+
+    private val searchViewModel: SearchViewModel by viewModels()
+    private val companyViewModel: CompanyViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding {  }.run { }
+        binding {
+            companyVm = companyViewModel
+
+            searchViewModel.test()
+            companyViewModel.test()
+        }
     }
 
     override fun onBackPressed() {
