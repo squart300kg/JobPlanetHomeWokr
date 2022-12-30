@@ -7,6 +7,7 @@ import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.databinding.ItemCompanyBinding
 import com.jobplanet.kr.android.model.response.RecrutesResponse
+import com.jobplanet.kr.android.ui.CommonItemDecoration
 
 class CompanyAdapter : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
 
@@ -39,9 +40,21 @@ class CompanyAdapter : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() 
         parent: ViewGroup,
         layoutRes: Int
     ): BaseViewHolder<RecrutesResponse.RecruitItem, ItemCompanyBinding>(itemId, parent, layoutRes) {
-        fun initTag() {
-
+        init {
+            itemBinding.rvCompanyAppealCategory.apply {
+                setHasFixedSize(true)
+                adapter = CompanyAppealAdapter()
+                addItemDecoration(
+                    CommonItemDecoration(
+                        firstItemMargin = 0,
+                        lastItemMargin = 0,
+                        left = 2,
+                        right = 2
+                    )
+                )
+            }
         }
+        fun initTag() {  }
     }
 
 }

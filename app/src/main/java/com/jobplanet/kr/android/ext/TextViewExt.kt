@@ -16,7 +16,10 @@ fun TextView.setText(text: String?) {
 @BindingAdapter("jobPlanet:setReward")
 fun TextView.setReward(reward: Int?) {
     reward?.let { reward ->
-        text = DecimalFormat("#,###").format(reward) + resources.getString(R.string.won)
+        text = String.format(
+            resources.getString(R.string.reward),
+            DecimalFormat("#,###").format(reward)
+        )
     }
 }
 

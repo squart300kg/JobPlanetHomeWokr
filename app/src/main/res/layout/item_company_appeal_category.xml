@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="appealItem"
+            type="String" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:jobPlanet="http://schemas.android.com/tools">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/categoryItemHeight"
+            android:textSize="@dimen/recrutesCompanyWellCategoryTextSize"
+            android:paddingVertical="@dimen/recrutesCompanyWellCategoryVerticalPadding"
+            android:paddingHorizontal="@dimen/recrutesCompanyWellCategoryHorizontalPadding"
+            android:gravity="center"
+            android:textColor="@color/recruteCompanyAppealColor"
+            android:background="@drawable/border_well_being_category"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            jobPlanet:setText="@{appealItem}"
+            jobPlanet:text="연봉 1.5배" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

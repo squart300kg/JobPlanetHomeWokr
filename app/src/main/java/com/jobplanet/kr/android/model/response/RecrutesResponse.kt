@@ -13,6 +13,7 @@ data class RecrutesResponse(
         @Expose
         @SerializedName("appeal")
         val appeal: String,
+
         @Expose
         @SerializedName("company")
         val company: Company,

@@ -6,6 +6,7 @@ import com.jobplanet.kr.android.model.response.RecrutesResponse
 import com.jobplanet.kr.android.model.response.SearchCategoryResponse
 import com.jobplanet.kr.android.ui.adapter.CategoryAdapter
 import com.jobplanet.kr.android.ui.adapter.CompanyAdapter
+import com.jobplanet.kr.android.ui.adapter.CompanyAppealAdapter
 
 @BindingAdapter("jobPlanet:submit")
 fun <T> RecyclerView.submit(items: List<T>?) {
@@ -17,6 +18,16 @@ fun <T> RecyclerView.submit(items: List<T>?) {
             is CompanyAdapter -> {
                 (adapter as CompanyAdapter).submit(items as List<RecrutesResponse.RecruitItem>)
             }
+            is CompanyAppealAdapter -> {
+                (adapter as CompanyAppealAdapter).submit(items as List<String>)
+            }
         }
+    }
+}
+
+@BindingAdapter("jobPlanet:submit")
+fun RecyclerView.submit(items: String?) {
+    items?.let {
+        submit(it.split(",").toList())
     }
 }

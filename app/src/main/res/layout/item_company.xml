@@ -62,15 +62,17 @@
             jobPlanet:text="브레인커머스" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvWellBeingCategory"
+            android:id="@+id/rvCompanyAppealCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/recrutesCompanyWellBeingTopMargin"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/tvName"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            jobPlanet:setVisibility="@{!companyItem.appeal.empty}"
             jobPlanet:itemCount="2"
-            jobPlanet:listitem="@layout/item_company_well_being_category"/>
+            jobPlanet:submit="@{companyItem.appeal}"
+            jobPlanet:listitem="@layout/item_company_appeal_category"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,8 +81,7 @@
             android:textStyle="bold"
             android:layout_marginTop="@dimen/recrutesCompanyRewardTopMargin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvWellBeingCategory"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvCompanyAppealCategory"
             jobPlanet:setReward="@{companyItem.reward}"
             jobPlanet:text="보상금: 3,000,000원" />
 

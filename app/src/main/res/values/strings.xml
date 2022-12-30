@@ -5,4 +5,5 @@
 
     <string name="payLoadMessageCategoryClick">categoryClick</string>
     <string name="won">원</string>
+    <string name="reward">축하금: %s원</string>
 </resources>
