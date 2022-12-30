@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/recrutesSearchHeight"
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@drawable/icon_symbol"
+        android:paddingStart="@dimen/recrutesSearchStartPadding"
+        android:drawablePadding="@dimen/recrutesSearchEndPadding"
+        android:paddingVertical="@dimen/recrutesSearchVerticalPadding"
+        android:background="@null"
+        android:hint="@string/searchHint" />
+</androidx.constraintlayout.widget.ConstraintLayout>

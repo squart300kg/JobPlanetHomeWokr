@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="commonDividingLine">1dp</dimen>
+
+
+    <dimen name="recrutesSearchStartPadding">20dp</dimen>
+    <dimen name="recrutesSearchEndPadding">12dp</dimen>
+    <dimen name="recrutesSearchHeight">56dp</dimen>
+    <dimen name="recrutesSearchVerticalPadding">18dp</dimen>
+
+    <dimen name="categoryVerticalPadding">16dp</dimen>
+    <dimen name="categoryItemWidth">50dp</dimen>
+    <dimen name="categoryItemHeight">30dp</dimen>
+    <dimen name="categotyItemTextSize">14sp</dimen>
+    <dimen name="categoryItemHorizontalPadding">12dp</dimen>
+    <dimen name="categoryItemVerticalPadding">5dp</dimen>
+
+</resources>
