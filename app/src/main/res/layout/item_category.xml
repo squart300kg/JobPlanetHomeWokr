@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <TextView
+<layout>
+    <data>
+        <variable
+            name="categoryItem"
+            type="com.jobplanet.kr.android.model.response.SearchCategoryResponse.SearchCategory" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/categoryItemHeight"
-        android:textSize="@dimen/categotyItemTextSize"
-        android:paddingVertical="@dimen/categoryItemVerticalPadding"
-        android:paddingHorizontal="@dimen/categoryItemHorizontalPadding"
-        android:gravity="center"
-        android:background="@drawable/border_category"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="채용" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/categoryItemHeight"
+            android:textSize="@dimen/categotyItemTextSize"
+            android:paddingVertical="@dimen/categoryItemVerticalPadding"
+            android:paddingHorizontal="@dimen/categoryItemHorizontalPadding"
+            android:gravity="center"
+            android:background="@drawable/border_category"
+            android:text="@{categoryItem.title}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="채용" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseActivity
 import com.jobplanet.kr.android.databinding.ActivityRecruitsBinding
+import com.jobplanet.kr.android.ui.adapter.CategoryAdapter
 import com.jobplanet.kr.android.util.BackButtonCloseHandler
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,27 +19,30 @@ class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity
 
     private val backButtonCloseHandler by lazy { BackButtonCloseHandler(this) }
 
-    private val searchViewModel: SearchViewModel by viewModels()
+    private val categoryViewModel: CategoryViewModel by viewModels()
     private val companyViewModel: CompanyViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding {
+            categoryVm = categoryViewModel
             companyVm = companyViewModel
 
-//            rvCategory.apply {
-//                setHasFixedSize(true)
-//                addItemDecoration(
-//                    CommonItemDecoration(
-//                        left = 6,
-//                        right = 6
-//                    )
-//                )
-//            }
-            searchViewModel.test()
-            companyViewModel.test()
+            rvCategory.apply {
+                setHasFixedSize(true)
+                adapter = CategoryAdapter()
+            }
+
+            rvCompany.apply {
+                setHasFixedSize(true)
+//                adapter = CompanyAdapter()
+
+            }
+
         }
+        categoryViewModel.getSearchCategorys()
+        companyViewModel.getCompanies()
     }
 
     override fun onBackPressed() {

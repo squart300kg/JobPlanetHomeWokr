@@ -10,8 +10,10 @@
         app:layout_constraintTop_toTopOf="parent"
         android:drawableStart="@drawable/icon_symbol"
         android:paddingStart="@dimen/recrutesSearchStartPadding"
+        android:textColor="@color/defaultTextColor"
         android:drawablePadding="@dimen/recrutesSearchEndPadding"
         android:paddingVertical="@dimen/recrutesSearchVerticalPadding"
         android:background="@null"
+        android:textColorHint="@color/grey"
         android:hint="@string/searchHint" />
 </androidx.constraintlayout.widget.ConstraintLayout>

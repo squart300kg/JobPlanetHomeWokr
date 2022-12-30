@@ -6,8 +6,9 @@
         <!-- 배경색-->
         <item name="colorOnPrimary">@color/purple_200</item>
         <!--커서색, 드래그 하이트라이트색, EditText 밑줄색-->
-        <item name="colorAccent">@color/main_orange_color</item>
+        <item name="colorAccent">@color/mainGreenColor</item>
 
+        <!-- 상태바 설정 -->
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textColor">@color/defaultTextColor</item>
         <item name="android:statusBarColor">@color/white</item>

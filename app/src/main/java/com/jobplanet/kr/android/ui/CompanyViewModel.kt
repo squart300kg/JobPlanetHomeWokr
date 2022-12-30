@@ -8,7 +8,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CompanyViewModel @Inject constructor() : BaseViewModel() {
 
-    fun test() {
+    fun getCompanies() {
         Log.i("JOBPLE","SearchViewModel Hello")
 
     }

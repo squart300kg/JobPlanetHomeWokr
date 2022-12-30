@@ -1,10 +1,11 @@
 package com.jobplanet.kr.android.api
 
 import com.jobplanet.kr.android.model.response.SampleResponse
+import com.jobplanet.kr.android.model.response.SearchCategoryResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface SampleApi {
+interface BaseApi {
 
     @GET("playlistItems")
     suspend fun getFreeLectures(
@@ -14,5 +15,8 @@ interface SampleApi {
         @Query("playlistId")playListId: String,
         @Query("maxResults")maxResults: String = "15",
     ): SampleResponse
+
+    @GET("search")
+    suspend fun getSearchCategory(): SearchCategoryResponse?
 
 }
