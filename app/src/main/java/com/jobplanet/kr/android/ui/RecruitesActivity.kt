@@ -1,7 +1,6 @@
 package com.jobplanet.kr.android.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -26,13 +25,16 @@ class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity
 
     private val backButtonCloseHandler by lazy { BackButtonCloseHandler(this) }
 
+    private val categoryAdapter by lazy { CategoryAdapter(this) }
+
     private val categoryViewModel: CategoryViewModel by viewModels()
     private val companyViewModel: CompanyViewModel by viewModels()
+
 
     private val clickListener = View.OnClickListener { view ->
         when (view.id) {
             R.id.tvSearchCategory -> {
-                Log.i("클릭!", "${view.tag}")
+                categoryAdapter.notifyItemChanged(view.tag as Int, resources.getString(R.string.payLoadMessageCategoryClick))
             }
         }
     }
@@ -46,7 +48,7 @@ class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity
 
             rvCategory.apply {
                 setHasFixedSize(true)
-                adapter = CategoryAdapter()
+                adapter = categoryAdapter
                 addItemDecoration(
                     CommonItemDecoration(
                         firstItemMargin = 20,
