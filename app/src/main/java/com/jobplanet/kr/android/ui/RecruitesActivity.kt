@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 //  1. buildGradle의 import 라이브러리 신기술 찾아보고 적용
 //  2. KOIN -> HILT전환
 //  3. 테스트 코드 작성
+//  4. ItemDecoration재설계
 
 @AndroidEntryPoint
 class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity_recruits) {
@@ -32,11 +33,29 @@ class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity
             rvCategory.apply {
                 setHasFixedSize(true)
                 adapter = CategoryAdapter()
+                addItemDecoration(
+                    CommonItemDecoration(
+                        firstItemMargin = 20,
+                        lastItemMargin = 20,
+                        left = 4,
+                        right = 4
+                    )
+                )
+
             }
 
             rvCompany.apply {
                 setHasFixedSize(true)
 //                adapter = CompanyAdapter()
+//                addItemDecoration(
+//                    CommonGridItemDecoration(
+//                        outerMargin = 20,
+//                        innerMargin = 6,
+//                        firstTopLength = 8,
+//                        top = 20
+//
+//                    )
+//                )
 
             }
 

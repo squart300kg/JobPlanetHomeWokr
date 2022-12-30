@@ -8,12 +8,12 @@ import com.jobplanet.kr.android.util.DensityUtils
 
 
 class CommonItemDecoration(
-    private val left: Int = 0,
-    private val top: Int = 0,
-    private val right: Int = 0,
-    private val bottom: Int = 0,
     private val firstItemMargin: Int = -1,
     private val lastItemMargin: Int = -1,
+    private val left: Int = 0,
+    private val right: Int = 0,
+    private val top: Int = 0,
+    private val bottom: Int = 0,
     private val orientation: Int = LinearLayoutManager.HORIZONTAL
 ) : RecyclerView.ItemDecoration() {
 

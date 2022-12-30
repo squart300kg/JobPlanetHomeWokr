@@ -5,8 +5,8 @@
 
     <dimen name="recrutesSearchStartPadding">20dp</dimen>
     <dimen name="recrutesSearchEndPadding">12dp</dimen>
-    <dimen name="recrutesSearchHeight">56dp</dimen>
-    <dimen name="recrutesSearchVerticalPadding">18dp</dimen>
+    <dimen name="recrutesSearchHeight">24dp</dimen>
+    <dimen name="recrutesSearchIconVerticalMargin">18dp</dimen>
 
     <dimen name="categoryVerticalPadding">16dp</dimen>
     <dimen name="categoryItemWidth">50dp</dimen>
@@ -25,5 +25,7 @@
     <dimen name="recrutesCompanyWellCategoryVerticalPadding">2.5dp</dimen>
     <dimen name="recrutesCompanyWellCategoryTextSize">10sp</dimen>
     <dimen name="recrutesCompanyRewardTopMargin">4dp</dimen>
+    <dimen name="recrutesSearchIconStartMargin">20dp</dimen>
+    <dimen name="recrutesSearchStartMargin">12.17dp</dimen>
 
 </resources>
