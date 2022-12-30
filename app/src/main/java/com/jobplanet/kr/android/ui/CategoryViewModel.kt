@@ -1,6 +1,6 @@
 package com.jobplanet.kr.android.ui
 
-import android.util.Log
+import android.view.View.OnClickListener
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -23,6 +23,8 @@ class CategoryViewModel @Inject constructor(
     val categoryResponse: LiveData<MutableList<SearchCategoryResponse.SearchCategory>>
         get() = _categoryResponse
 
+    lateinit var clickListener: OnClickListener
+
     fun getSearchCategorys() {
         job?.cancel()
         job = viewModelScope.launch {
@@ -31,8 +33,12 @@ class CategoryViewModel @Inject constructor(
                 .catch {
                     // TODO: 어떻게 처리할지 고민
                 }
-                .collect {
-                    _categoryResponse.value = it.item.toMutableList()
+                .collect { response ->
+                    _categoryResponse.value = response.item.toMutableList().apply {
+                        map { searchCategory ->
+                            searchCategory.clickListener = clickListener
+                        }
+                    }
                 }
         }
     }

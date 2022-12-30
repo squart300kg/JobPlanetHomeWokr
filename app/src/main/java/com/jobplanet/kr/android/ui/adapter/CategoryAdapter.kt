@@ -22,6 +22,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.SearchCategoryViewH
 
     override fun onBindViewHolder(holder: SearchCategoryViewHolder, position: Int) {
         holder.bindItem(items[position])
+        holder.initTag()
     }
 
     override fun getItemCount(): Int {
@@ -39,6 +40,8 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.SearchCategoryViewH
         parent: ViewGroup,
         layoutRes: Int
     ): BaseViewHolder<SearchCategoryResponse.SearchCategory, ItemCategoryBinding>(itemId, parent, layoutRes) {
-
+        fun initTag() {
+            itemBinding.tvSearchCategory.tag = items[absoluteAdapterPosition].title
+        }
     }
 }
