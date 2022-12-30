@@ -7,11 +7,14 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Qualifier
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -23,14 +26,14 @@ object ApiModules {
     const val TIMEOUT = 10L
 
     @Provides
-    fun debugInterceptor() = HttpLoggingInterceptor(object: HttpLoggingInterceptor.Logger {
+    fun provideDebugInterceptor() = HttpLoggingInterceptor(object: HttpLoggingInterceptor.Logger {
         override fun log(message: String) {
             Log.d("API", message)
         }
-
     }).apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
+
 
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
@@ -38,7 +41,7 @@ object ApiModules {
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(debugInterceptor())
+            .addInterceptor(provideDebugInterceptor())
             .build()
     }
 

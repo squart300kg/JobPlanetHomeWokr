@@ -36,9 +36,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingVertical="@dimen/categoryVerticalPadding"
-            jobPlanet:submit="@{categoryVm.categoryResponse}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/vSearchDevideLine"
+            jobPlanet:submit="@{categoryVm.categoryResponse}"
             jobPlanet:listitem="@layout/item_category" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -49,6 +49,7 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/rvCategory"
             app:layout_constraintBottom_toBottomOf="parent"
+            jobPlanet:submit="@{companyVm.companyResponse}"
             jobPlanet:listitem="@layout/item_company"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

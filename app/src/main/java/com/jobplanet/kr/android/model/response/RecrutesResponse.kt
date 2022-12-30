@@ -1,11 +1,13 @@
 package com.jobplanet.kr.android.model.response
 
+import android.view.View.OnClickListener
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class RecrutesResponse(
-    val recruit_items: List<RecruitItem>
-
+    @Expose
+    @SerializedName("recruit_items")
+    val recruitItems: List<RecruitItem>
 ) {
     data class RecruitItem(
         @Expose
@@ -25,7 +27,9 @@ data class RecrutesResponse(
         val reward: Int,
         @Expose
         @SerializedName("title")
-        val title: String
+        val title: String,
+
+        var clickListener: OnClickListener? = null
     ) {
         data class Company(
             @Expose
