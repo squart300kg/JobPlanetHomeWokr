@@ -27,6 +27,15 @@ class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity
         binding {
             companyVm = companyViewModel
 
+//            rvCategory.apply {
+//                setHasFixedSize(true)
+//                addItemDecoration(
+//                    CommonItemDecoration(
+//                        left = 6,
+//                        right = 6
+//                    )
+//                )
+//            }
             searchViewModel.test()
             companyViewModel.test()
         }

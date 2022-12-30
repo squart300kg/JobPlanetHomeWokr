@@ -14,5 +14,16 @@
     <dimen name="categotyItemTextSize">14sp</dimen>
     <dimen name="categoryItemHorizontalPadding">12dp</dimen>
     <dimen name="categoryItemVerticalPadding">5dp</dimen>
+    <dimen name="recrutesCompanyTitle">16sp</dimen>
+    <dimen name="recrutesCompanyTitleMarginTop">8dp</dimen>
+    <dimen name="recrutesCompanyNameTopMargin">5dp</dimen>
+    <dimen name="recrutesCompanyTitleTextSize">14sp</dimen>
+    <dimen name="recrutesCompanyDrawablePadding">4.5dp</dimen>
+    <dimen name="recrutesCompanyNameStartMargin">4dp</dimen>
+    <dimen name="recrutesCompanyWellBeingTopMargin">3dp</dimen>
+    <dimen name="recrutesCompanyWellCategoryHorizontalPadding">6dp</dimen>
+    <dimen name="recrutesCompanyWellCategoryVerticalPadding">2.5dp</dimen>
+    <dimen name="recrutesCompanyWellCategoryTextSize">10sp</dimen>
+    <dimen name="recrutesCompanyRewardTopMargin">4dp</dimen>
 
 </resources>
