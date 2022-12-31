@@ -8,15 +8,20 @@ import androidx.lifecycle.whenCreated
 import com.jobplanet.kr.android.ext.checkSearchWord
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseActivity
-import com.jobplanet.kr.android.databinding.ActivityRecruitsBinding
+import com.jobplanet.kr.android.constant.SearchFilterType
+import com.jobplanet.kr.android.databinding.ActivityMainBinding
 import com.jobplanet.kr.android.ui.adapter.CategoryAdapter
-import com.jobplanet.kr.android.ui.adapter.CompanyAdapter
+import com.jobplanet.kr.android.ui.sub.CompanyFragment
+import com.jobplanet.kr.android.ui.sub.CompanyViewModel
+import com.jobplanet.kr.android.ui.sub.RecruteFragment
+import com.jobplanet.kr.android.ui.sub.RecruteViewModel
 import com.jobplanet.kr.android.util.BackButtonCloseHandler
+import com.jobplanet.kr.android.util.CommonItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 // TODO:
-//  0. 카테고리 중복선택시 체크 해제되는 문제
+//  0. 프래그먼트 이동시 replace되며 다시 호출되는 문제
 //  1. buildGradle의 import 라이브러리 신기술 찾아보고 적용
 //  3. 테스트 코드 작성
 //  4. ItemDecoration재설계
@@ -24,15 +29,18 @@ import kotlinx.coroutines.launch
 //  6. ResponseType의 depth가 너무 깊다. 더 직관적인 처리 방법이 없을까?
 
 @AndroidEntryPoint
-class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity_recruits) {
+class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val backButtonCloseHandler by lazy { BackButtonCloseHandler(this) }
 
     private val categoryAdapter by lazy { CategoryAdapter() }
-    private val companyAdapter by lazy { CompanyAdapter() }
 
     private val categoryViewModel: CategoryViewModel by viewModels()
     private val companyViewModel: CompanyViewModel by viewModels()
+    private val recruteViewModel: RecruteViewModel by viewModels()
+
+    private val recruteFragment = RecruteFragment()
+    private val companyFragment = CompanyFragment()
 
     private var selectedFilter = ""
     private var searchWord = ""
@@ -46,22 +54,41 @@ class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity
                     categoryAdapter.selectFilter(first)
                     selectedFilter = second
                 }
-                searchCompanies()
+
+                addFragment(type = selectedFilter)
+//                searchCompanies()
             }
         }
+    }
+
+    private fun addFragment(type: String) {
+        supportFragmentManager.beginTransaction().apply {
+            when (type) {
+                SearchFilterType.RECRUTE.value -> {
+                    replace(binding.flContainer.id, recruteFragment)
+                }
+                SearchFilterType.COMPANY.value -> {
+                    replace(binding.flContainer.id, companyFragment)
+                }
+            }
+        }.addToBackStack(type).commit()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        addFragment(type = SearchFilterType.RECRUTE.value)
+
         binding {
             categoryVm = categoryViewModel
-            companyVm = companyViewModel
 
             layoutCommonSearch.etSearch.apply {
                 checkSearchWord { searchWord ->
-                    this@RecruitesActivity.searchWord = "$searchWord"
-                    searchCompanies()
+                    this@MainActivity.searchWord = "$searchWord"
+//                    searchCompanies()
+                    recruteFragment.arguments = Bundle().apply {
+                        putString(RecruteFragment.SEARCH_WORK, "$searchWord")
+                    }
                 }
             }
 
@@ -76,26 +103,17 @@ class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity
                         right = 4)
                 )
             }
-
-            rvCompany.apply {
-                setHasFixedSize(true)
-                adapter = companyAdapter
-                addItemDecoration(
-                    CommonGridItemDecoration(
-                        outerMargin = 20,
-                        innerMargin = 6,
-                        firstTopLength = 8,
-                        top = 20)
-                )
-            }
         }
 
         lifecycleScope.launch {
             whenCreated {
                 categoryViewModel.clickListener = clickListener
-                companyViewModel.clickListener = clickListener
-
                 categoryViewModel.getSearchCategorys()
+            }
+            recruteFragment.whenCreated {
+                recruteViewModel.getRecrutes()
+            }
+            companyFragment.whenCreated {
                 companyViewModel.getCompanies()
             }
         }
@@ -105,9 +123,9 @@ class RecruitesActivity: BaseActivity<ActivityRecruitsBinding>(R.layout.activity
         backButtonCloseHandler.appExit()
     }
 
-    private fun searchCompanies() {
-        companyAdapter.searchCompanies(
-            filterWord = selectedFilter.ifEmpty { categoryViewModel.categoryResponse.value?.get(0)?.title ?: "" },
-            searchWord = searchWord)
-    }
+//    private fun searchCompanies() {
+//        recruteAdapter.searchCompanies(
+//            filterWord = selectedFilter.ifEmpty { categoryViewModel.categoryResponse.value?.get(0)?.title ?: "" },
+//            searchWord = searchWord)
+//    }
 }

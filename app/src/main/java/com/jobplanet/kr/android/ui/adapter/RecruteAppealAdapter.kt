@@ -7,11 +7,11 @@ import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.databinding.ItemCompanyAppealCategoryBinding
 
-class CompanyAppealAdapter : RecyclerView.Adapter<CompanyAppealAdapter.CompanyAppealViewHolder>() {
+class RecruteAppealAdapter : RecyclerView.Adapter<RecruteAppealAdapter.CompanyAppealViewHolder>() {
 
     private val items: MutableList<String> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompanyAppealAdapter.CompanyAppealViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecruteAppealAdapter.CompanyAppealViewHolder {
         return CompanyAppealViewHolder(
             BR.appealItem,
             parent,

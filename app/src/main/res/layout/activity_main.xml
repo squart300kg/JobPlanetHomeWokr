@@ -4,9 +4,6 @@
         <variable
             name="categoryVm"
             type="com.jobplanet.kr.android.ui.CategoryViewModel" />
-        <variable
-            name="companyVm"
-            type="com.jobplanet.kr.android.ui.CompanyViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,16 +38,13 @@
             jobPlanet:submit="@{categoryVm.categoryResponse}"
             jobPlanet:listitem="@layout/item_category" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCompany"
+        <FrameLayout
+            android:id="@+id/flContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:spanCount="2"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/rvCategory"
             app:layout_constraintBottom_toBottomOf="parent"
-            jobPlanet:submit="@{companyVm.companyResponse}"
-            jobPlanet:listitem="@layout/item_company"/>
+            jobPlanet:layout="@layout/fragment_recrute" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

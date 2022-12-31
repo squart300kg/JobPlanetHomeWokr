@@ -1,11 +1,10 @@
 package com.jobplanet.kr.android.repository
 
 
-import com.jobplanet.kr.android.model.response.CompanyResponse
 import com.jobplanet.kr.android.model.response.RecrutesResponse
 import kotlinx.coroutines.flow.Flow
 
-interface CompanyRepository {
+interface RecruteRepository {
 
-    fun getCompanies(): Flow<CompanyResponse>
+    fun getCompanies(): Flow<RecrutesResponse>
 }

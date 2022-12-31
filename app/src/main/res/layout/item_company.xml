@@ -3,7 +3,7 @@
     <data>
         <variable
             name="companyItem"
-            type="com.jobplanet.kr.android.model.response.RecrutesResponse.RecruitItem" />
+            type="com.jobplanet.kr.android.model.response.CompanyResponse.CellItem" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,79 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/ivThumbnail"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="W, 95:154"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            jobPlanet:loadImageRadius="@{companyItem.imageUrl}"
-            jobPlanet:radius="@{8}"
-            jobPlanet:src="@drawable/test_icon_company" />
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/recrutesCompanyTitleMarginTop"
-            android:maxLines="2"
-            android:textSize="@dimen/recrutesCompanyTitle"
-            android:textStyle="bold"
-            android:ellipsize="end"
-            app:layout_constraintTop_toBottomOf="@+id/ivThumbnail"
-            jobPlanet:setText="@{companyItem.title}"
-            jobPlanet:text="[프로덕트팀] 스페이스워크 UX/UI디자이너 " />
-
-        <TextView
-            android:id="@+id/tvScore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/recrutesCompanyNameTopMargin"
-            android:textSize="@dimen/recrutesCompanyTitleTextSize"
-            android:textStyle="bold"
-            android:drawablePadding="@dimen/recrutesCompanyDrawablePadding"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:drawableStartCompat="@drawable/icon_star"
-            jobPlanet:calculateRatingAvg="@{companyItem.company.ratings}"
-            jobPlanet:text="3.6" />
-
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/recrutesCompanyTitleTextSize"
-            android:layout_marginStart="@dimen/recrutesCompanyNameStartMargin"
-            app:layout_constraintStart_toEndOf="@id/tvScore"
-            app:layout_constraintTop_toTopOf="@id/tvScore"
-            app:layout_constraintBottom_toBottomOf="@id/tvScore"
-            jobPlanet:setText="@{companyItem.company.name}"
-            jobPlanet:text="브레인커머스" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCompanyAppealCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/recrutesCompanyWellBeingTopMargin"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            jobPlanet:setVisibility="@{!companyItem.appeal.empty}"
-            jobPlanet:itemCount="2"
-            jobPlanet:submit="@{companyItem.appeal}"
-            jobPlanet:listitem="@layout/item_company_appeal_category"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/recrutesCompanyTitleTextSize"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/recrutesCompanyRewardTopMargin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvCompanyAppealCategory"
-            jobPlanet:setReward="@{companyItem.reward}"
-            jobPlanet:text="보상금: 3,000,000원" />
-
+            app:layout_constraintDimensionRatio="1:1"
+            android:text="하"
+            android:gravity="center"
+            android:textSize="50dp"
+            app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

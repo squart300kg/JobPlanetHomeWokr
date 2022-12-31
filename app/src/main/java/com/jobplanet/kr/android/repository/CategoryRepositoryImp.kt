@@ -15,8 +15,8 @@ class CategoryRepositoryImp @Inject constructor(
 
     private val searchCategoryResponse = SearchCategoryResponse(
         item = listOf(
-            SearchCategoryResponse.SearchCategory("기업"),
-            SearchCategoryResponse.SearchCategory("채용"))
+            SearchCategoryResponse.SearchCategory("채용"),
+            SearchCategoryResponse.SearchCategory("기업"))
     )
 
     override fun getCategories(): Flow<SearchCategoryResponse> {

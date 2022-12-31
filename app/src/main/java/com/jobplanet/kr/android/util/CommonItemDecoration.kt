@@ -1,4 +1,4 @@
-package com.jobplanet.kr.android.ui
+package com.jobplanet.kr.android.util
 
 import android.graphics.Rect
 import android.view.View
