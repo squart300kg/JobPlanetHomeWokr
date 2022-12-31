@@ -26,20 +26,18 @@ class CompanyAdapter : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: CompanyViewHolder, position: Int) {
-        if (searchWord.isEmpty()) {
-            holder.bindItem(items[position])
-        } else {
-            holder.bindItem(filterdItems[position])
-        }
+        holder.bindItem(getItemsBySearchWord()[position])
         holder.initClickTag()
     }
 
     override fun getItemCount(): Int {
-        return if (searchWord.isEmpty()) {
-            items.count()
-        } else {
-            filterdItems.count()
-        }
+        return getItemsBySearchWord().count()
+    }
+
+
+    private fun getItemsBySearchWord(): MutableList<RecrutesResponse.RecruitItem> {
+        return if (searchWord.isEmpty()) items
+        else filterdItems
     }
 
     fun searchCompanies(filterWord: String, searchWord: String) {
