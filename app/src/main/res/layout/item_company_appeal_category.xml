@@ -16,7 +16,7 @@
             android:layout_height="@dimen/categoryItemHeight"
             android:textSize="@dimen/recrutesCompanyWellCategoryTextSize"
             android:paddingVertical="@dimen/recrutesCompanyWellCategoryVerticalPadding"
-            android:paddingHorizontal="@dimen/recrutesCompanyWellCategoryHorizontalPadding"
+            android:paddingHorizontal="@dimen/recrutesCompanyAppealCategoryHorizontalPadding"
             android:gravity="center"
             android:textColor="@color/recruteCompanyAppealColor"
             android:background="@drawable/border_well_being_category"

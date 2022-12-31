@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 // TODO:
-//  0. 프래그먼트 이동시 replace되며 다시 호출되는 문제
+//  0. 리사이클러뷰 공통 사용 고민
 //  1. buildGradle의 import 라이브러리 신기술 찾아보고 적용
 //  3. 테스트 코드 작성
 //  4. ItemDecoration재설계
@@ -29,6 +29,7 @@ import kotlinx.coroutines.launch
 //  6. ResponseType의 depth가 너무 깊다. 더 직관적인 처리 방법이 없을까?
 //  7. 시간나면 viewDeviderLine공통으로 빼기
 //  8. border는 어떻게 공통화하면 좋을지?
+
 
 @AndroidEntryPoint
 class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -89,7 +90,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     this@MainActivity.searchWord = "$searchWord"
 //                    searchCompanies()
                     recruteFragment.arguments = Bundle().apply {
-                        putString(RecruteFragment.SEARCH_WORK, "$searchWord")
+                        putString(RecruteFragment.SEARCH_WORD, "$searchWord")
                     }
                 }
             }

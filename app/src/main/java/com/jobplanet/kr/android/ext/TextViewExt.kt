@@ -5,6 +5,7 @@ import android.text.Html
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.jobplanet.kr.android.R
+import com.jobplanet.kr.android.model.response.CommonRecruteItem
 import com.jobplanet.kr.android.model.response.RecrutesResponse
 import com.jobplanet.kr.android.util.DateUtil
 import java.text.DecimalFormat
@@ -44,7 +45,7 @@ fun TextView.setReward(reward: Int?) {
 }
 
 @BindingAdapter("jobPlanet:calculateRatingAvg")
-fun TextView.calculateRatingAvg(ratings: List<RecrutesResponse.RecruitItem.Company.Rating>?) {
+fun TextView.calculateRatingAvg(ratings: List<CommonRecruteItem.Company.Rating>?) {
     ratings?.let { ratings ->
         val scoresAvg = ratings.map { it.rating }.max()
         this.text = "$scoresAvg"

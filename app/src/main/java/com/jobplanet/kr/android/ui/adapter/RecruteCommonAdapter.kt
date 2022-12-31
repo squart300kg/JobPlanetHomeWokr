@@ -1,25 +1,27 @@
 package com.jobplanet.kr.android.ui.adapter
 
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.constant.SearchFilterType
-import com.jobplanet.kr.android.databinding.ItemCompanyBinding
 import com.jobplanet.kr.android.databinding.ItemRecruteBinding
-import com.jobplanet.kr.android.model.response.RecrutesResponse
+import com.jobplanet.kr.android.model.response.CommonRecruteItem
 import com.jobplanet.kr.android.util.CommonItemDecoration
 
-class RecruteAdapter : RecyclerView.Adapter<RecruteAdapter.RecruteViewHolder>() {
+class RecruteCommonAdapter(
+    private val isFromHome: Boolean = true
+) : RecyclerView.Adapter<RecruteCommonAdapter.RecruteViewHolder>() {
 
-    private val items: MutableList<RecrutesResponse.RecruitItem> = mutableListOf()
-    private var filterdItems: MutableList<RecrutesResponse.RecruitItem> = mutableListOf()
+    private val items: MutableList<CommonRecruteItem> = mutableListOf()
+    private var filterdItems: MutableList<CommonRecruteItem> = mutableListOf()
 
     private var filterWord = ""
     private var searchWord = ""
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecruteAdapter.RecruteViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecruteCommonAdapter.RecruteViewHolder {
         return RecruteViewHolder(
             BR.recruteItem,
             parent,
@@ -36,7 +38,7 @@ class RecruteAdapter : RecyclerView.Adapter<RecruteAdapter.RecruteViewHolder>() 
     }
 
 
-    private fun getItemsBySearchWord(): MutableList<RecrutesResponse.RecruitItem> {
+    private fun getItemsBySearchWord(): MutableList<CommonRecruteItem> {
         return if (searchWord.isEmpty()) items
         else filterdItems
     }
@@ -62,7 +64,8 @@ class RecruteAdapter : RecyclerView.Adapter<RecruteAdapter.RecruteViewHolder>() 
         notifyDataSetChanged()
     }
 
-    fun submit(response: List<RecrutesResponse.RecruitItem>) {
+    fun submit(response: List<CommonRecruteItem>) {
+        Log.i("submit", "$response")
         items.clear()
         items.addAll(response)
         notifyDataSetChanged()
@@ -72,8 +75,13 @@ class RecruteAdapter : RecyclerView.Adapter<RecruteAdapter.RecruteViewHolder>() 
         itemId: Int,
         parent: ViewGroup,
         layoutRes: Int
-    ): BaseViewHolder<RecrutesResponse.RecruitItem, ItemRecruteBinding>(itemId, parent, layoutRes) {
+    ): BaseViewHolder<CommonRecruteItem, ItemRecruteBinding>(itemId, parent, layoutRes) {
         init {
+            if (!isFromHome) {
+                itemBinding.rootView.apply {
+                    layoutParams.width = itemView.resources.getDimensionPixelSize(R.dimen.companyHorizontalCellTypeWidth)
+                }
+            }
             itemBinding.rvCompanyAppealCategory.apply {
                 setHasFixedSize(true)
                 adapter = RecruteAppealAdapter()

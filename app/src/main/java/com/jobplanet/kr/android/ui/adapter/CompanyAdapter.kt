@@ -1,13 +1,16 @@
 package com.jobplanet.kr.android.ui.adapter
 
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.constant.CompanyType
 import com.jobplanet.kr.android.databinding.ItemCompanyBinding
+import com.jobplanet.kr.android.databinding.ItemRecruteCellTypeBinding
 import com.jobplanet.kr.android.model.response.CompanyResponse
+import com.jobplanet.kr.android.util.CommonItemDecoration
 
 class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -26,11 +29,11 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     R.layout.item_company)
             CompanyType.CELL_TYPE_HORIZONTAL_THEME.ordinal ->
                 TodayRecommentRecruteViewHolder(
-                    BR.companyItem,
+                    BR.recruteItem,
                     parent,
-                    R.layout.item_company)
+                    R.layout.item_recrute_cell_type)
             CompanyType.CELL_TYPE_REVIEW.ordinal ->
-                TodayRecommentRecruteViewHolder(
+                ReviewViewHolder(
                     BR.companyItem,
                     parent,
                     R.layout.item_company)
@@ -69,21 +72,23 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         itemId: Int,
         parent: ViewGroup,
         layoutRes: Int
-    ): BaseViewHolder<CompanyResponse.CellItem, ItemCompanyBinding>(itemId, parent, layoutRes) {
-//        init {
-//            itemBinding.rvCompanyAppealCategory.apply {
-//                setHasFixedSize(true)
-//                adapter = RecruteAppealAdapter()
-//                addItemDecoration(
-//                    CommonItemDecoration(
-//                        firstItemMargin = 0,
-//                        lastItemMargin = 0,
-//                        left = 2,
-//                        right = 2
-//                    )
-//                )
-//            }
-//        }
+    ): BaseViewHolder<CompanyResponse.CellItem, ItemRecruteCellTypeBinding>(itemId, parent, layoutRes) {
+        init {
+            with (itemBinding) {
+                rvRecrute.apply {
+                    setHasFixedSize(true)
+                    adapter = RecruteCommonAdapter(isFromHome = false)
+                    addItemDecoration(
+                        CommonItemDecoration(
+                            firstItemMargin = 20,
+                            left = 6,
+                            right = 6
+                        )
+                    )
+                }
+            }
+
+        }
 
         // TODO: 클릭이벤트 대비하여 남겨둠 추후 필요없으면 제거
         fun initClickTag() {  }

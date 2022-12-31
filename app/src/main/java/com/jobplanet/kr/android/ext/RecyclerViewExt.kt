@@ -2,12 +2,12 @@ package com.jobplanet.kr.android.ext
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.jobplanet.kr.android.model.response.CommonRecruteItem
 import com.jobplanet.kr.android.model.response.CompanyResponse
-import com.jobplanet.kr.android.model.response.RecrutesResponse
 import com.jobplanet.kr.android.model.response.SearchCategoryResponse
 import com.jobplanet.kr.android.ui.adapter.CategoryAdapter
 import com.jobplanet.kr.android.ui.adapter.CompanyAdapter
-import com.jobplanet.kr.android.ui.adapter.RecruteAdapter
+import com.jobplanet.kr.android.ui.adapter.RecruteCommonAdapter
 import com.jobplanet.kr.android.ui.adapter.RecruteAppealAdapter
 
 @BindingAdapter("jobPlanet:submit")
@@ -17,8 +17,8 @@ fun <T> RecyclerView.submit(items: List<T>?) {
             is CategoryAdapter -> {
                 (adapter as CategoryAdapter).submit(items as List<SearchCategoryResponse.SearchCategory>)
             }
-            is RecruteAdapter -> {
-                (adapter as RecruteAdapter).submit(items as List<RecrutesResponse.RecruitItem>)
+            is RecruteCommonAdapter -> {
+                (adapter as RecruteCommonAdapter).submit(items as List<CommonRecruteItem>)
             }
             is RecruteAppealAdapter -> {
                 (adapter as RecruteAppealAdapter).submit(items as List<String>)

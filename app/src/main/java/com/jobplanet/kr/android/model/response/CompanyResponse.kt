@@ -37,7 +37,7 @@ data class CompanyResponse(
         val rateTotalAvg: Double,
         @Expose
         @SerializedName("recommend_recruit")
-        val recommend_recruit: List<RecommendRecruit>,
+        val recommendRecruit: List<CommonRecruteItem>,
         @Expose
         @SerializedName("review_summary")
         val reviewSummary: String,
@@ -46,51 +46,9 @@ data class CompanyResponse(
         val salaryAvg: Int,
         @Expose
         @SerializedName("section_title")
-        val section_title: String,
+        val sectionTitle: String,
         @Expose
         @SerializedName("update_date")
         val updateDate: String
-    ) {
-        data class RecommendRecruit(
-            @Expose
-            @SerializedName("appeal")
-            val appeal: String,
-            @Expose
-            @SerializedName("company")
-            val company: Company,
-            @Expose
-            @SerializedName("id")
-            val id: Int,
-            @Expose
-            @SerializedName("image_url")
-            val imageUrl: String,
-            @Expose
-            @SerializedName("reward")
-            val reward: Int,
-            @Expose
-            @SerializedName("title")
-            val title: String
-        ) {
-            data class Company(
-                @Expose
-                @SerializedName("logo_path")
-                val logoPath: String,
-                @Expose
-                @SerializedName("name")
-                val name: String,
-                @Expose
-                @SerializedName("ratings")
-                val ratings: List<Rating>
-            ) {
-                data class Rating(
-                    @Expose
-                    @SerializedName("rating")
-                    val rating: Double,
-                    @Expose
-                    @SerializedName("type")
-                    val type: String
-                )
-            }
-        }
-    }
+    )
 }

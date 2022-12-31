@@ -2,11 +2,6 @@
 <resources>
     <dimen name="commonDividingLine">1dp</dimen>
 
-
-    <dimen name="recrutesSearchStartPadding">20dp</dimen>
-    <dimen name="recrutesSearchEndPadding">12dp</dimen>
-    <dimen name="recrutesSearchHeight">24dp</dimen>
-    <dimen name="recrutesSearchIconVerticalMargin">18dp</dimen>
     <dimen name="categoryVerticalPadding">16dp</dimen>
     <dimen name="categoryItemWidth">50dp</dimen>
     <dimen name="categoryItemHeight">30dp</dimen>
@@ -14,6 +9,10 @@
     <dimen name="categoryItemHorizontalPadding">12dp</dimen>
     <dimen name="categoryItemVerticalPadding">5dp</dimen>
 
+    <dimen name="recrutesSearchStartPadding">20dp</dimen>
+    <dimen name="recrutesSearchEndPadding">12dp</dimen>
+    <dimen name="recrutesSearchHeight">24dp</dimen>
+    <dimen name="recrutesSearchIconVerticalMargin">18dp</dimen>
     <dimen name="recrutesCompanyTitle">16sp</dimen>
     <dimen name="recrutesCompanyTitleMarginTop">8dp</dimen>
     <dimen name="recrutesCompanyNameTopMargin">5dp</dimen>
@@ -21,14 +20,16 @@
     <dimen name="recrutesCompanyDrawablePadding">4.5dp</dimen>
     <dimen name="recrutesCompanyNameStartMargin">4dp</dimen>
     <dimen name="recrutesCompanyWellBeingTopMargin">3dp</dimen>
-    <dimen name="recrutesCompanyWellCategoryHorizontalPadding">6dp</dimen>
+    <dimen name="recrutesCompanyAppealCategoryHorizontalPadding">6dp</dimen>
     <dimen name="recrutesCompanyWellCategoryVerticalPadding">2.5dp</dimen>
     <dimen name="recrutesCompanyWellCategoryTextSize">10sp</dimen>
     <dimen name="recrutesCompanyRewardTopMargin">4dp</dimen>
     <dimen name="recrutesSearchIconStartMargin">20dp</dimen>
     <dimen name="recrutesSearchStartMargin">12.17dp</dimen>
-    <dimen name="companyLogoWidthHeight">58dp</dimen>
+    <dimen name="recrutesCompanyThumbnailRadius">8dp</dimen>
+    <dimen name="recrutesCompanyThumbnailElevation">0dp</dimen>
 
+    <dimen name="companyLogoWidthHeight">58dp</dimen>
     <dimen name="companyNameTextSize">16sp</dimen>
     <dimen name="companyNameTopMargin">4dp</dimen>
     <dimen name="companyNameStartMargin">12dp</dimen>
@@ -47,5 +48,9 @@
     <dimen name="companyInterviewSummaryTopMargin">8dp</dimen>
     <dimen name="companyInterViewDateTextSize">15sp</dimen>
     <dimen name="companyHorizontalGuideLine">20dp</dimen>
+    <dimen name="companyHorizontalCellTypeWidth">154dp</dimen>
+    <dimen name="recrutesCompanyHorizontalTitleTextSize">20sp</dimen>
+    <dimen name="recrutesCompanyHorizontalTopMargin">18dp</dimen>
+    <dimen name="companyHorizontalStartMargin">20dp</dimen>
 
 </resources>

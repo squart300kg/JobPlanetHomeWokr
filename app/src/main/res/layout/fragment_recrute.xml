@@ -2,7 +2,7 @@
 <layout xmlns:jobPlanet="http://schemas.android.com/tools">
     <data>
         <variable
-            name="companyVm"
+            name="recruteVm"
             type="com.jobplanet.kr.android.ui.sub.RecruteViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,12 +16,13 @@
             android:id="@+id/rvRecrute"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:spanCount="2"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            jobPlanet:submit="@{companyVm.recruteResponse}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            jobPlanet:submit="@{recruteVm.recruteResponse}"
             jobPlanet:listitem="@layout/item_recrute"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

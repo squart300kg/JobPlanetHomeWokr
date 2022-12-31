@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jobplanet.kr.android.base.BaseViewModel
+import com.jobplanet.kr.android.model.response.CommonRecruteItem
 import com.jobplanet.kr.android.model.response.RecrutesResponse
 import com.jobplanet.kr.android.repository.RecruteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,13 +17,14 @@ class RecruteViewModel @Inject constructor(
     private val repository: RecruteRepository
 ) : BaseViewModel() {
 
-    private val _recruteResponse = MutableLiveData<MutableList<RecrutesResponse.RecruitItem>>()
-    val recruteResponse: LiveData<MutableList<RecrutesResponse.RecruitItem>>
+    private val _recruteResponse = MutableLiveData<MutableList<CommonRecruteItem>>()
+    val recruteResponse: LiveData<MutableList<CommonRecruteItem>>
         get() = _recruteResponse
 
 //    lateinit var clickListener: View.OnClickListener
 
     fun getRecrutes() {
+        String
         job?.cancel()
         job = viewModelScope.launch {
             repository.getCompanies()
