@@ -50,7 +50,7 @@
             jobPlanet:text="3.6" />
 
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/tvCompanyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/recrutesCompanyTitleTextSize"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/recrutesCompanyWellBeingTopMargin"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvCompanyName"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             jobPlanet:setVisibility="@{!recruteItem.appeal.empty}"
             jobPlanet:itemCount="2"

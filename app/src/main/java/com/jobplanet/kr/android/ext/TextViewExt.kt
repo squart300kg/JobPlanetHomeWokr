@@ -1,16 +1,35 @@
 package com.jobplanet.kr.android.ext
 
 import android.graphics.Typeface
+import android.text.Html
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.model.response.RecrutesResponse
+import com.jobplanet.kr.android.util.DateUtil
 import java.text.DecimalFormat
 
 @BindingAdapter("jobPlanet:setText")
 fun TextView.setText(text: String?) {
     text?.let { text ->
         this.text = text
+    }
+}
+
+@BindingAdapter("jobPlanet:setTime")
+fun TextView.setTime(time: String?) {
+    time?.let { time ->
+        this.text = DateUtil.getDateString(time)
+    }
+}
+
+@BindingAdapter("jobPlanet:setSalaryAvg")
+fun TextView.setSalaryAvg(salary: Int?) {
+    salary?.let {
+        setCdataText(String.format(
+            resources.getString(R.string.salaryAvg),
+            String.format(DecimalFormat("#,###").format(it)))
+        )
     }
 }
 
@@ -41,3 +60,10 @@ fun TextView.selectFilter(isSelected: Boolean) {
     }
 }
 
+fun TextView.setCdataText(string: String) {
+    text = if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
+        Html.fromHtml(string)
+    } else {
+        Html.fromHtml(string, Html.FROM_HTML_MODE_LEGACY)
+    }
+}

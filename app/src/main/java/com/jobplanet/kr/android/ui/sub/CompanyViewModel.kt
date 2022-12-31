@@ -19,8 +19,8 @@ class CompanyViewModel @Inject constructor(
     private val repository: CompanyRepository
 ) : BaseViewModel() {
 
-    private val _companyResponse = MutableLiveData<CompanyResponse>()
-    val companyResponse: LiveData<CompanyResponse>
+    private val _companyResponse = MutableLiveData<MutableList<CompanyResponse.CellItem>>()
+    val companyResponse: LiveData<MutableList<CompanyResponse.CellItem>>
         get() = _companyResponse
 
 //    lateinit var clickListener: View.OnClickListener
@@ -33,8 +33,7 @@ class CompanyViewModel @Inject constructor(
                     // TODO: 어떻게 처리할지 고민
                 }
                 .collect { response ->
-                    _companyResponse.value = response
-                    Log.i("companyResponse", "$response")
+                    _companyResponse.value = response.cell_items.toMutableList()
                 }
         }
 

@@ -3,7 +3,6 @@ package com.jobplanet.kr.android.util
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.jobplanet.kr.android.util.DensityUtils
 
 class CommonGridItemDecoration(
     private val outerMargin: Int = 0,
@@ -23,32 +22,32 @@ class CommonGridItemDecoration(
     ) {
         super.getItemOffsets(outRect, view, parent, state)
 
-        outRect.top = DensityUtils.dpToPx(top)
-        outRect.bottom = DensityUtils.dpToPx(bottom)
+        outRect.top = DensityUtil.dpToPx(top)
+        outRect.bottom = DensityUtil.dpToPx(bottom)
 
         val childItemPosition = parent.getChildAdapterPosition(view)
         val itemCount = parent.adapter?.itemCount?: 0
 
         if (firstTopLength >= 0 && childItemPosition < row) {
-            outRect.top = DensityUtils.dpToPx(firstTopLength)
+            outRect.top = DensityUtil.dpToPx(firstTopLength)
         }
 
         if (lastBottomLength >= 0 && childItemPosition > itemCount - row) {
-            outRect.bottom = DensityUtils.dpToPx(lastBottomLength)
+            outRect.bottom = DensityUtil.dpToPx(lastBottomLength)
         }
 
         when(childItemPosition % row) {
             0 -> {
-                outRect.left = DensityUtils.dpToPx(outerMargin)
-                outRect.right = DensityUtils.dpToPx(innerMargin)
+                outRect.left = DensityUtil.dpToPx(outerMargin)
+                outRect.right = DensityUtil.dpToPx(innerMargin)
             }
             row -1 -> {
-                outRect.left = DensityUtils.dpToPx(innerMargin)
-                outRect.right = DensityUtils.dpToPx(outerMargin)
+                outRect.left = DensityUtil.dpToPx(innerMargin)
+                outRect.right = DensityUtil.dpToPx(outerMargin)
             }
             else -> {
-                outRect.left = DensityUtils.dpToPx(innerMargin)
-                outRect.right = DensityUtils.dpToPx(innerMargin)
+                outRect.left = DensityUtil.dpToPx(innerMargin)
+                outRect.right = DensityUtil.dpToPx(innerMargin)
             }
         }
     }

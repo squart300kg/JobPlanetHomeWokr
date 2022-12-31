@@ -5,41 +5,31 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object DateUtil {
-    private const val outputPattern = "yyyy-MM-dd'T'HH:mm:ss"
-    private const val outputPattern2 = "yyyy년 MM월 dd일 HH시 mm분"
-    private const val outputForPay = "yyyyMMddHHmm"
-    fun getCurrentTimeMillisForPay(): Long {
+    const val inputPattern = "yyyy-MM-dd'T'HH:mm:ss"
+    const val outputPattern = "yyyy.MM"
 
-        val currentDateFormat = SimpleDateFormat(outputForPay, Locale.getDefault())
-        val currentDate = System.currentTimeMillis()
-//        val currentDatestring = currentDateFormat.format(currentDate)
+    fun getDateString(utcDateString: String?, inputPtn: String = inputPattern, outputPtn: String = outputPattern): String {
 
-        return currentDate
+        // 한국시간을 서버에서 받아옵니다.
+        val inputDateFormat = SimpleDateFormat(inputPtn, Locale.KOREA)
+        var inputDate = inputDateFormat.parse(utcDateString)
+
+        val localDate = getLocalDateFromUTCDate(inputDate)
+
+        inputDate = inputDateFormat.parse(inputDateFormat.format(localDate))
+
+        // 그걸 현지 시간로 바꿈
+        val dateFormat = SimpleDateFormat(outputPtn, Locale.getDefault())
+        val currentDateString = dateFormat.format(inputDate)
+
+        return currentDateString
     }
 
-    fun getCurrentDateForPayComplete(): String {
+    private fun getLocalDateFromUTCDate(utcDate : Date) : Date {
+        val cal = Calendar.getInstance()
+        cal.time = utcDate
+        cal.add(Calendar.HOUR, 9)
 
-        val currentDateFormat = SimpleDateFormat(outputPattern2, Locale.getDefault())
-        val currentDate = Date(System.currentTimeMillis())
-        val currentDatestring = currentDateFormat.format(currentDate)
-
-        return currentDatestring
-    }
-
-    fun getDateFromTimeMillis(timeMillis : Long?) : String {
-        val currentDateFormat = SimpleDateFormat(outputPattern2, Locale.getDefault())
-
-        Calendar.getInstance().apply {
-            if (timeMillis != null) {
-                timeInMillis = timeMillis
-            }
-            Log.i("getDateFromTimeMillis", "timeMillis : $timeMillis, result : ${currentDateFormat.format(this.time)}")
-            return currentDateFormat.format(this.time)
-        }
-
-//        val currentDate = timeMillis?.let { Date(it) }
-//        val currentDatestring = currentDateFormat.format(currentDate)
-//
-//        return currentDatestring
+        return cal.time
     }
 }

@@ -4,7 +4,6 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.jobplanet.kr.android.util.DensityUtils
 
 
 class CommonItemDecoration(
@@ -25,10 +24,10 @@ class CommonItemDecoration(
     ) {
         super.getItemOffsets(outRect, view, parent, state)
 
-        outRect.left = DensityUtils.dpToPx(left)
-        outRect.right = DensityUtils.dpToPx(right)
-        outRect.top = DensityUtils.dpToPx(top)
-        outRect.bottom = DensityUtils.dpToPx(bottom)
+        outRect.left = DensityUtil.dpToPx(left)
+        outRect.right = DensityUtil.dpToPx(right)
+        outRect.top = DensityUtil.dpToPx(top)
+        outRect.bottom = DensityUtil.dpToPx(bottom)
 
         val isFirst = parent.getChildAdapterPosition(view) == 0
         val isLast = parent.getChildAdapterPosition(view) == (parent.adapter?.itemCount?: 0) - 1
@@ -37,10 +36,10 @@ class CommonItemDecoration(
         if (firstItemMargin >= 0 && isFirst) {
             when(orientation) {
                 LinearLayoutManager.HORIZONTAL -> {
-                    outRect.left = DensityUtils.dpToPx(firstItemMargin)
+                    outRect.left = DensityUtil.dpToPx(firstItemMargin)
                 }
                 LinearLayoutManager.VERTICAL -> {
-                    outRect.top = DensityUtils.dpToPx(firstItemMargin)
+                    outRect.top = DensityUtil.dpToPx(firstItemMargin)
                 }
             }
         }
@@ -48,10 +47,10 @@ class CommonItemDecoration(
         if (lastItemMargin >= 0 && isLast) {
             when(orientation) {
                 LinearLayoutManager.HORIZONTAL -> {
-                    outRect.right = DensityUtils.dpToPx(lastItemMargin)
+                    outRect.right = DensityUtil.dpToPx(lastItemMargin)
                 }
                 LinearLayoutManager.VERTICAL -> {
-                    outRect.bottom = DensityUtils.dpToPx(lastItemMargin)
+                    outRect.bottom = DensityUtil.dpToPx(lastItemMargin)
                 }
             }
         }

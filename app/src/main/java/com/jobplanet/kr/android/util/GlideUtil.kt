@@ -45,7 +45,7 @@ object GlideUtil {
                         bottomRightAvailable : Boolean = true,
                         bottomLeftAvailable : Boolean = true) {
 
-        val radiusPx = DensityUtils.dpToPx(radius).toFloat()
+        val radiusPx = DensityUtil.dpToPx(radius).toFloat()
 
         Glide.with(imageView.context)
             .load(url)

@@ -7,13 +7,13 @@
     <dimen name="recrutesSearchEndPadding">12dp</dimen>
     <dimen name="recrutesSearchHeight">24dp</dimen>
     <dimen name="recrutesSearchIconVerticalMargin">18dp</dimen>
-
     <dimen name="categoryVerticalPadding">16dp</dimen>
     <dimen name="categoryItemWidth">50dp</dimen>
     <dimen name="categoryItemHeight">30dp</dimen>
     <dimen name="categotyItemTextSize">14sp</dimen>
     <dimen name="categoryItemHorizontalPadding">12dp</dimen>
     <dimen name="categoryItemVerticalPadding">5dp</dimen>
+
     <dimen name="recrutesCompanyTitle">16sp</dimen>
     <dimen name="recrutesCompanyTitleMarginTop">8dp</dimen>
     <dimen name="recrutesCompanyNameTopMargin">5dp</dimen>
@@ -27,5 +27,25 @@
     <dimen name="recrutesCompanyRewardTopMargin">4dp</dimen>
     <dimen name="recrutesSearchIconStartMargin">20dp</dimen>
     <dimen name="recrutesSearchStartMargin">12.17dp</dimen>
+    <dimen name="companyLogoWidthHeight">58dp</dimen>
+
+    <dimen name="companyNameTextSize">16sp</dimen>
+    <dimen name="companyNameTopMargin">4dp</dimen>
+    <dimen name="companyNameStartMargin">12dp</dimen>
+    <dimen name="companyRatingTextSize">14sp</dimen>
+    <dimen name="companyRatingPadding">4dp</dimen>
+    <dimen name="companyRatingTopMargin">5dp</dimen>
+    <dimen name="companyIndustryTextSize">14sp</dimen>
+    <dimen name="companyIndustryStartMargin">4dp</dimen>
+    <dimen name="companyDevideLineTopMargin">24dp</dimen>
+    <dimen name="companySummaryImageTopMargin">30dp</dimen>
+    <dimen name="companySummaryTextTopMargin">13.5dp</dimen>
+    <dimen name="companySummaryTextSize">16sp</dimen>
+    <dimen name="companySalaryAvg">48dp</dimen>
+    <dimen name="companySalaryAvgTopMargin">12dp</dimen>
+    <dimen name="companyInterviewTopMargin">20dp</dimen>
+    <dimen name="companyInterviewSummaryTopMargin">8dp</dimen>
+    <dimen name="companyInterViewDateTextSize">15sp</dimen>
+    <dimen name="companyHorizontalGuideLine">20dp</dimen>
 
 </resources>

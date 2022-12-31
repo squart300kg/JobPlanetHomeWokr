@@ -34,22 +34,22 @@ data class CompanyResponse(
         val pros: String,
         @Expose
         @SerializedName("rate_total_avg")
-        val rate_total_avg: Double,
+        val rateTotalAvg: Double,
         @Expose
         @SerializedName("recommend_recruit")
         val recommend_recruit: List<RecommendRecruit>,
         @Expose
         @SerializedName("review_summary")
-        val review_summary: String,
+        val reviewSummary: String,
         @Expose
         @SerializedName("salary_avg")
-        val salary_avg: Int,
+        val salaryAvg: Int,
         @Expose
         @SerializedName("section_title")
         val section_title: String,
         @Expose
         @SerializedName("update_date")
-        val update_date: String
+        val updateDate: String
     ) {
         data class RecommendRecruit(
             @Expose
