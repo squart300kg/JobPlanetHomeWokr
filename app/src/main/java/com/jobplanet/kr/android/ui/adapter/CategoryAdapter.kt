@@ -1,6 +1,6 @@
 package com.jobplanet.kr.android.ui.adapter
 
-import android.content.Context
+import android.graphics.Typeface
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.R
@@ -8,13 +8,13 @@ import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.databinding.ItemCategoryBinding
 import com.jobplanet.kr.android.model.response.SearchCategoryResponse
-import com.jobplanet.kr.android.ui.RecruitesActivity
 
-class CategoryAdapter(
-    private val context: Context
-) : RecyclerView.Adapter<CategoryAdapter.SearchCategoryViewHolder>() {
+class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.SearchCategoryViewHolder>() {
 
     private val items: MutableList<SearchCategoryResponse.SearchCategory> = mutableListOf()
+
+    private var currentSelectedPosition = 0
+    private var lastSelectedPosition = currentSelectedPosition
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.SearchCategoryViewHolder {
             return SearchCategoryViewHolder(
@@ -28,9 +28,10 @@ class CategoryAdapter(
     override fun onBindViewHolder(holder: SearchCategoryViewHolder, position: Int) {
         holder.bindItem(items[position])
         holder.initTag()
+        if (position == 0) holder.selectFilter(isSelected = true)
     }
 
-    // 갱신할때는 payload값으로 식별 후, 사용합니다.
+    // 갱신할때는 payload값을 핸들링하여 사용합니다.
     override fun onBindViewHolder(
         holder: SearchCategoryViewHolder,
         position: Int,
@@ -39,17 +40,21 @@ class CategoryAdapter(
         if (payloads.isEmpty()) {
             super.onBindViewHolder(holder, position, payloads)
         } else {
-            // 추후 payload의 추가 가능성을 생각하여 학장성에 대비하였습니다.
             payloads.forEach { payload ->
-                when (payload as String) {
-                    context.resources.getString(R.string.payLoadMessageCategoryClick) -> holder.selectFilter()
-                }
+                holder.selectFilter(payload as Boolean)
             }
         }
     }
 
     override fun getItemCount(): Int {
         return items.count()
+    }
+
+    fun selectFilter(position: Int) {
+        currentSelectedPosition = position
+        notifyItemChanged(currentSelectedPosition, true)
+        notifyItemChanged(lastSelectedPosition, false)
+        lastSelectedPosition = currentSelectedPosition
     }
 
     fun submit(response: List<SearchCategoryResponse.SearchCategory>) {
@@ -63,13 +68,21 @@ class CategoryAdapter(
         parent: ViewGroup,
         layoutRes: Int
     ): BaseViewHolder<SearchCategoryResponse.SearchCategory, ItemCategoryBinding>(itemId, parent, layoutRes) {
+
         fun initTag() {
             itemBinding.tvSearchCategory.tag = absoluteAdapterPosition
         }
-        fun selectFilter() {
+
+        fun selectFilter(isSelected: Boolean) {
             with (itemBinding.tvSearchCategory) {
-                isSelected = !isSelected
+                this.isSelected = isSelected
+                this.typeface = if (this.isSelected) {
+                    Typeface.DEFAULT_BOLD
+                } else {
+                    Typeface.DEFAULT
+                }
             }
         }
+
     }
 }
