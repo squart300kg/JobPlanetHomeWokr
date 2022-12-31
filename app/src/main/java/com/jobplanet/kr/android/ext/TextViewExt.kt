@@ -1,5 +1,6 @@
 package com.jobplanet.kr.android.ext
 
+import android.graphics.Typeface
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.jobplanet.kr.android.R
@@ -28,6 +29,15 @@ fun TextView.calculateRatingAvg(ratings: List<RecrutesResponse.RecruitItem.Compa
     ratings?.let { ratings ->
         val scoresAvg = ratings.map { it.rating }.max()
         this.text = "$scoresAvg"
+    }
+}
+
+fun TextView.selectFilter(isSelected: Boolean) {
+    this.isSelected = isSelected
+    this.typeface = if (this.isSelected) {
+        Typeface.DEFAULT_BOLD
+    } else {
+        Typeface.DEFAULT
     }
 }
 

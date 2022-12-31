@@ -1,12 +1,12 @@
 package com.jobplanet.kr.android.ui.adapter
 
-import android.graphics.Typeface
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.databinding.ItemCategoryBinding
+import com.jobplanet.kr.android.ext.selectFilter
 import com.jobplanet.kr.android.model.response.SearchCategoryResponse
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.SearchCategoryViewHolder>() {
@@ -14,7 +14,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.SearchCategoryViewH
     private val items: MutableList<SearchCategoryResponse.SearchCategory> = mutableListOf()
 
     private var currentSelectedPosition = 0
-    private var lastSelectedPosition = currentSelectedPosition
+    private var lastSelectedPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.SearchCategoryViewHolder {
             return SearchCategoryViewHolder(
@@ -27,7 +27,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.SearchCategoryViewH
     // 첫 초기화시에만 사용하도록 설계했습니다.
     override fun onBindViewHolder(holder: SearchCategoryViewHolder, position: Int) {
         holder.bindItem(items[position])
-        holder.initTag()
+        holder.initClickTag()
         if (position == 0) holder.selectFilter(isSelected = true)
     }
 
@@ -68,21 +68,14 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.SearchCategoryViewH
         parent: ViewGroup,
         layoutRes: Int
     ): BaseViewHolder<SearchCategoryResponse.SearchCategory, ItemCategoryBinding>(itemId, parent, layoutRes) {
-
-        fun initTag() {
-            itemBinding.tvSearchCategory.tag = absoluteAdapterPosition
+        fun initClickTag() {
+            itemBinding.tvSearchCategory.tag = Pair(
+                absoluteAdapterPosition,
+                items[absoluteAdapterPosition].title)
         }
 
         fun selectFilter(isSelected: Boolean) {
-            with (itemBinding.tvSearchCategory) {
-                this.isSelected = isSelected
-                this.typeface = if (this.isSelected) {
-                    Typeface.DEFAULT_BOLD
-                } else {
-                    Typeface.DEFAULT
-                }
-            }
+            itemBinding.tvSearchCategory.selectFilter(isSelected)
         }
-
     }
 }

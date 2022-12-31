@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <include
-            android:id="@+id/layoutSearch"
+            android:id="@+id/layoutCommonSearch"
             layout="@layout/layout_common_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/commonDividingLine"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/layoutSearch"
+            app:layout_constraintTop_toBottomOf="@+id/layoutCommonSearch"
             android:background="@color/mainGreenColor"/>
 
         <androidx.recyclerview.widget.RecyclerView

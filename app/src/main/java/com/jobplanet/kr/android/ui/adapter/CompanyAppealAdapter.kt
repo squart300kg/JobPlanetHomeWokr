@@ -6,8 +6,6 @@ import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.databinding.ItemCompanyAppealCategoryBinding
-import com.jobplanet.kr.android.databinding.ItemCompanyBinding
-import com.jobplanet.kr.android.ui.CommonItemDecoration
 
 class CompanyAppealAdapter : RecyclerView.Adapter<CompanyAppealAdapter.CompanyAppealViewHolder>() {
 
@@ -22,7 +20,7 @@ class CompanyAppealAdapter : RecyclerView.Adapter<CompanyAppealAdapter.CompanyAp
 
     override fun onBindViewHolder(holder: CompanyAppealViewHolder, position: Int) {
         holder.bindItem(items[position])
-        holder.initTag()
+        holder.initClickTag()
     }
 
     override fun getItemCount(): Int {
@@ -41,7 +39,7 @@ class CompanyAppealAdapter : RecyclerView.Adapter<CompanyAppealAdapter.CompanyAp
         layoutRes: Int
     ): BaseViewHolder<String, ItemCompanyAppealCategoryBinding>(itemId, parent, layoutRes) {
 
-        fun initTag() {
+        fun initClickTag() {
 
         }
     }

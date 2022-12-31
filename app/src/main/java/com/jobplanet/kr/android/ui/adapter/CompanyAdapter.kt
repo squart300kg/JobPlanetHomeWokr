@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseViewHolder
+import com.jobplanet.kr.android.constant.SearchFilterType
 import com.jobplanet.kr.android.databinding.ItemCompanyBinding
 import com.jobplanet.kr.android.model.response.RecrutesResponse
 import com.jobplanet.kr.android.ui.CommonItemDecoration
@@ -12,21 +13,54 @@ import com.jobplanet.kr.android.ui.CommonItemDecoration
 class CompanyAdapter : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
 
     private val items: MutableList<RecrutesResponse.RecruitItem> = mutableListOf()
+    private var filterdItems: MutableList<RecrutesResponse.RecruitItem> = mutableListOf()
+
+    private var filterWord = ""
+    private var searchWord = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompanyAdapter.CompanyViewHolder {
         return CompanyViewHolder(
             BR.companyItem,
             parent,
-            R.layout.item_company
-        )}
+            R.layout.item_company)
+    }
 
     override fun onBindViewHolder(holder: CompanyViewHolder, position: Int) {
-        holder.bindItem(items[position])
-        holder.initTag()
+        if (searchWord.isEmpty()) {
+            holder.bindItem(items[position])
+        } else {
+            holder.bindItem(filterdItems[position])
+        }
+        holder.initClickTag()
     }
 
     override fun getItemCount(): Int {
-        return items.count()
+        return if (searchWord.isEmpty()) {
+            items.count()
+        } else {
+            filterdItems.count()
+        }
+    }
+
+    fun searchCompanies(filterWord: String, searchWord: String) {
+        this.filterWord = filterWord
+        this.searchWord = searchWord
+
+        filterdItems.clear()
+        filterdItems.addAll(
+            items.filter { recruitItem ->
+                when (filterWord) {
+                    SearchFilterType.COMPANY.value -> {
+                        recruitItem.company.name.contains(searchWord)
+                    }
+                    SearchFilterType.RECRUTE.value -> {
+                        recruitItem.title.contains(searchWord)
+                    }
+                    else -> throw IllegalArgumentException("search filter type error")
+                }
+            }
+        )
+        notifyDataSetChanged()
     }
 
     fun submit(response: List<RecrutesResponse.RecruitItem>) {
@@ -54,7 +88,9 @@ class CompanyAdapter : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() 
                 )
             }
         }
-        fun initTag() {  }
+
+        // TODO: 클릭이벤트 대비하여 남겨둠 추후 필요없으면 제거
+        fun initClickTag() {  }
     }
 
 }
