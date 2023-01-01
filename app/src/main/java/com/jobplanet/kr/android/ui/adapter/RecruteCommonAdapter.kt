@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.R
+import com.jobplanet.kr.android.base.BaseSearchAdapter
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.constant.LayoutType
 import com.jobplanet.kr.android.databinding.ItemRecruteBinding
@@ -12,15 +13,9 @@ import com.jobplanet.kr.android.util.CommonItemDecoration
 
 class RecruteCommonAdapter(
     private val layoutType: LayoutType = LayoutType.GRID
-) : RecyclerView.Adapter<RecruteCommonAdapter.RecruteViewHolder>() {
+) : BaseSearchAdapter<CommonRecruteItem, RecruteCommonAdapter.RecruteViewHolder>() {
 
     private lateinit var ownerRecyclerView: RecyclerView
-
-    private val items: MutableList<CommonRecruteItem> = mutableListOf()
-    private var filterdItems: MutableList<CommonRecruteItem> = mutableListOf()
-
-    private var filterWord = ""
-    private var searchWord = ""
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -34,32 +29,15 @@ class RecruteCommonAdapter(
             R.layout.item_recrute)
     }
 
-    override fun onBindViewHolder(holder: RecruteViewHolder, position: Int) {
-        holder.bindItem(getItemsBySearchWord()[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as RecruteViewHolder).bindItem(getItemsBySearchWord()[position])
         holder.initClickTag()
     }
 
-    override fun getItemCount(): Int {
-        return getItemsBySearchWord().count()
-    }
-
-
-    private fun getItemsBySearchWord(): MutableList<CommonRecruteItem> {
-        return if (searchWord.isEmpty()) items
-               else filterdItems
-    }
-
-    fun searchCompanies(filterWord: String, searchWord: String) {
-        this.filterWord = filterWord
-        this.searchWord = searchWord
-
-        filterdItems.clear()
-        filterdItems.addAll(
-            items.filter { recruitItem ->
-                recruitItem.title.contains(searchWord)
-            }
-        )
-        notifyDataSetChanged()
+    override fun searchCompanies(filterWord: String, searchWord: String, filter: (CommonRecruteItem) -> Boolean) {
+        super.searchCompanies(filterWord, searchWord) { recruitItem ->
+            recruitItem.title.contains(searchWord)
+        }
     }
 
     fun submit(response: List<CommonRecruteItem>) {
@@ -101,5 +79,4 @@ class RecruteCommonAdapter(
             itemBinding.recruteRootView.tag = tag
         }
     }
-
 }

@@ -4,23 +4,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.R
+import com.jobplanet.kr.android.base.BaseSearchAdapter
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.constant.CompanyType
 import com.jobplanet.kr.android.constant.LayoutType
 import com.jobplanet.kr.android.databinding.ItemCompanyBinding
 import com.jobplanet.kr.android.databinding.ItemRecruteCellTypeBinding
+import com.jobplanet.kr.android.model.response.CommonRecruteItem
 import com.jobplanet.kr.android.model.response.CompanyResponse
 import com.jobplanet.kr.android.util.CommonItemDecoration
 
-class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CompanyAdapter: BaseSearchAdapter<CompanyResponse.CellItem, RecyclerView.ViewHolder>() {
 
     private val recruteCommonAdapter: RecruteCommonAdapter by lazy { RecruteCommonAdapter(layoutType = LayoutType.INNER_LINEAR_HORIZONTAL) }
-
-    private val items: MutableList<CompanyResponse.CellItem> = mutableListOf()
-    private var filterdItems: MutableList<CompanyResponse.CellItem> = mutableListOf()
-
-    private var filterWord = ""
-    private var searchWord = ""
 
     override fun getItemViewType(position: Int): Int {
         return CompanyType.valueOf(items[position].cellType).ordinal
@@ -64,28 +60,12 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int {
-        return getItemsBySearchWord().count()
-    }
-
-    private fun getItemsBySearchWord(): MutableList<CompanyResponse.CellItem> {
-        return if (searchWord.isEmpty()) items
-               else filterdItems
-    }
-
-    fun searchCompanies(filterWord: String, searchWord: String) {
-        this.filterWord = filterWord
-        this.searchWord = searchWord
-
-        filterdItems.clear()
-        filterdItems.addAll(
-            items.filter { recruitItem ->
-                recruitItem.name?.let { companyName ->
-                    companyName.contains(searchWord)
-                } ?: run { false }
-            }
-        )
-        notifyDataSetChanged()
+    override fun searchCompanies(filterWord: String, searchWord: String, filter: (CompanyResponse.CellItem) -> Boolean) {
+        super.searchCompanies(filterWord, searchWord) { recruitItem ->
+            recruitItem.name?.let { companyName ->
+                companyName.contains(searchWord)
+            } ?: run { false }
+        }
     }
 
     fun submit(response: List<CompanyResponse.CellItem>) {
