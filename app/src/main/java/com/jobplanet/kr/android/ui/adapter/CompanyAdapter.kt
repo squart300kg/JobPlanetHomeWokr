@@ -7,6 +7,7 @@ import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.constant.CompanyType
+import com.jobplanet.kr.android.constant.LayoutType
 import com.jobplanet.kr.android.databinding.ItemCompanyBinding
 import com.jobplanet.kr.android.databinding.ItemRecruteCellTypeBinding
 import com.jobplanet.kr.android.model.response.CompanyResponse
@@ -77,7 +78,7 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             with (itemBinding) {
                 rvRecrute.apply {
                     setHasFixedSize(true)
-                    adapter = RecruteCommonAdapter(isFromHome = false)
+                    adapter = RecruteCommonAdapter(layoutType = LayoutType.LINEAR_HORIZONTAL)
                     addItemDecoration(
                         CommonItemDecoration(
                             firstItemMargin = 20,
@@ -96,7 +97,7 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     /**
      * APi로 넘겨받는 cellType중, CELL_TYPE_REVIEW에 관한 viewHolder입니다.
-     * 해당 부분은 디자인 시안에 보이지 않아 개발하지 않고 ViewHolder만 남겨놓았습니다.
+     * 해당 부분은 디자인 시안에 보이지 않아 임의로 데이터를 바인딩하여 구현하였습니다.
       */
     inner class ReviewViewHolder(
         itemId: Int,

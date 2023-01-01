@@ -46,7 +46,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val companyFragment = CompanyFragment()
 
     private var selectedFilter = ""
-    private var searchWord = ""
 
     private val clickListener = View.OnClickListener { view ->
         when (view.id) {
@@ -87,9 +86,10 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
             layoutCommonSearch.etSearch.apply {
                 checkSearchWord { searchWord ->
-                    this@MainActivity.searchWord = "$searchWord"
-//                    searchCompanies()
                     recruteFragment.arguments = Bundle().apply {
+                        putString(RecruteFragment.SEARCH_WORD, "$searchWord")
+                    }
+                    companyFragment.arguments = Bundle().apply {
                         putString(RecruteFragment.SEARCH_WORD, "$searchWord")
                     }
                 }
@@ -125,10 +125,4 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onBackPressed() {
         backButtonCloseHandler.appExit()
     }
-
-//    private fun searchCompanies() {
-//        recruteAdapter.searchCompanies(
-//            filterWord = selectedFilter.ifEmpty { categoryViewModel.categoryResponse.value?.get(0)?.title ?: "" },
-//            searchWord = searchWord)
-//    }
 }

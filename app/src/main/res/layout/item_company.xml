@@ -133,6 +133,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvSummary"
             app:layout_constraintStart_toEndOf="@id/glLeft"
             app:layout_constraintEnd_toStartOf="@id/glRight"
+            jobPlanet:setVisibility="@{companyItem.salaryAvg != null}"
             jobPlanet:setSalaryAvg="@{companyItem.salaryAvg}"
             jobPlanet:text="평균 연봉  4,500 만원, 글자색 바꿔줘야함" />
 
@@ -143,6 +144,7 @@
             android:text="@string/companyInterviewTitle"
             android:layout_marginTop="@dimen/companyInterviewTopMargin"
             android:textStyle="bold"
+            jobPlanet:setVisibility="@{companyItem.interviewQuestion != null}"
             app:layout_constraintTop_toBottomOf="@+id/tvSalaryAvg"
             app:layout_constraintStart_toEndOf="@id/glLeft"
             app:layout_constraintEnd_toStartOf="@id/glRight"/>
@@ -155,7 +157,57 @@
             app:layout_constraintStart_toEndOf="@id/glLeft"
             app:layout_constraintEnd_toStartOf="@id/glRight"
             app:layout_constraintTop_toBottomOf="@id/tvInterviewTitle"
+            jobPlanet:setVisibility="@{companyItem.interviewQuestion != null}"
             jobPlanet:setText="@{companyItem.interviewQuestion}"
+            jobPlanet:text="처음에 문앞에서 어쩔 줄 몰라하며 서있었는데, 다른 분께서 도와주시고 음료수도 준비해 주시고해서 사내 분위기가 좋구나 라고 느꼈습니다." />
+
+        <TextView
+            android:id="@+id/tvConsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/companyConsTitle"
+            android:layout_marginTop="@dimen/companyInterviewTopMargin"
+            android:textStyle="bold"
+            jobPlanet:setVisibility="@{companyItem.cons != null}"
+            app:layout_constraintTop_toBottomOf="@+id/tvInterviewSummary"
+            app:layout_constraintStart_toEndOf="@id/glLeft"
+            app:layout_constraintEnd_toStartOf="@id/glRight"/>
+
+        <TextView
+            android:id="@+id/tvCons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/companyInterviewSummaryTopMargin"
+            app:layout_constraintStart_toEndOf="@id/glLeft"
+            app:layout_constraintEnd_toStartOf="@id/glRight"
+            app:layout_constraintTop_toBottomOf="@id/tvConsTitle"
+            jobPlanet:setVisibility="@{companyItem.cons != null}"
+            jobPlanet:setText="@{companyItem.cons}"
+            jobPlanet:text="처음에 문앞에서 어쩔 줄 몰라하며 서있었는데, 다른 분께서 도와주시고 음료수도 준비해 주시고해서 사내 분위기가 좋구나 라고 느꼈습니다." />
+
+        <TextView
+            android:id="@+id/tvProsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/companyConsTitle"
+            android:layout_marginTop="@dimen/companyInterviewTopMargin"
+            android:textStyle="bold"
+            jobPlanet:setVisibility="@{companyItem.pros != null}"
+            app:layout_constraintTop_toBottomOf="@+id/tvCons"
+            app:layout_constraintStart_toEndOf="@id/glLeft"
+            app:layout_constraintEnd_toStartOf="@id/glRight"/>
+
+        <TextView
+            android:id="@+id/tvPros"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/companyInterviewSummaryTopMargin"
+            android:text="@string/companyProsTitle"
+            app:layout_constraintStart_toEndOf="@id/glLeft"
+            app:layout_constraintEnd_toStartOf="@id/glRight"
+            app:layout_constraintTop_toBottomOf="@id/tvProsTitle"
+            jobPlanet:setVisibility="@{companyItem.pros != null}"
+            jobPlanet:setText="@{companyItem.pros}"
             jobPlanet:text="처음에 문앞에서 어쩔 줄 몰라하며 서있었는데, 다른 분께서 도와주시고 음료수도 준비해 주시고해서 사내 분위기가 좋구나 라고 느꼈습니다." />
 
         <View
@@ -164,7 +216,7 @@
             android:layout_height="@dimen/commonDividingLine"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/companyDevideLineTopMargin"
-            app:layout_constraintTop_toBottomOf="@+id/tvInterviewSummary"
+            app:layout_constraintTop_toBottomOf="@+id/tvPros"
             app:layout_constraintStart_toEndOf="@id/glLeft"
             app:layout_constraintEnd_toStartOf="@id/glRight"
             android:background="@color/grey"/>

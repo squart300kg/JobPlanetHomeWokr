@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseViewHolder
+import com.jobplanet.kr.android.constant.LayoutType
 import com.jobplanet.kr.android.constant.SearchFilterType
 import com.jobplanet.kr.android.databinding.ItemRecruteBinding
 import com.jobplanet.kr.android.model.response.CommonRecruteItem
 import com.jobplanet.kr.android.util.CommonItemDecoration
 
 class RecruteCommonAdapter(
-    private val isFromHome: Boolean = true
+    private val layoutType: LayoutType = LayoutType.GRID
 ) : RecyclerView.Adapter<RecruteCommonAdapter.RecruteViewHolder>() {
 
     private val items: MutableList<CommonRecruteItem> = mutableListOf()
@@ -77,11 +78,10 @@ class RecruteCommonAdapter(
         layoutRes: Int
     ): BaseViewHolder<CommonRecruteItem, ItemRecruteBinding>(itemId, parent, layoutRes) {
         init {
-            if (!isFromHome) {
-                itemBinding.rootView.apply {
-                    layoutParams.width = itemView.resources.getDimensionPixelSize(R.dimen.companyHorizontalCellTypeWidth)
-                }
+            if (layoutType == LayoutType.LINEAR_HORIZONTAL) {
+                itemBinding.rootView.apply { layoutParams.width = itemView.resources.getDimensionPixelSize(R.dimen.companyHorizontalCellTypeWidth) }
             }
+
             itemBinding.rvCompanyAppealCategory.apply {
                 setHasFixedSize(true)
                 adapter = RecruteAppealAdapter()

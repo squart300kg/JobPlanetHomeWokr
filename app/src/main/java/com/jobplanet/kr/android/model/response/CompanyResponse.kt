@@ -13,7 +13,7 @@ data class CompanyResponse(
         val cellType: String,
         @Expose
         @SerializedName("cons")
-        val cons: String,
+        val cons: String?,
         @Expose
         @SerializedName("count")
         val count: Int,
@@ -31,7 +31,7 @@ data class CompanyResponse(
         val name: String,
         @Expose
         @SerializedName("pros")
-        val pros: String,
+        val pros: String?,
         @Expose
         @SerializedName("rate_total_avg")
         val rateTotalAvg: Double,
@@ -43,7 +43,7 @@ data class CompanyResponse(
         val reviewSummary: String,
         @Expose
         @SerializedName("salary_avg")
-        val salaryAvg: Int,
+        val salaryAvg: Int?,
         @Expose
         @SerializedName("section_title")
         val sectionTitle: String,

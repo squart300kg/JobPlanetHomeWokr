@@ -29,13 +29,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginTop="@dimen/recrutesCompanyHorizontalTopMargin"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             app:layout_constraintBottom_toBottomOf="parent"
             jobPlanet:submit="@{recruteItem.recommendRecruit}"
             jobPlanet:listitem="@layout/item_recrute"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/commonDividingLine"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/companyDevideLineTopMargin"
+            app:layout_constraintTop_toBottomOf="@+id/rvRecrute"
+            android:background="@color/grey"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

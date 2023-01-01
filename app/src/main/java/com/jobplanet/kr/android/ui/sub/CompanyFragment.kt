@@ -6,11 +6,16 @@ import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseFragment
+import com.jobplanet.kr.android.constant.SearchFilterType
 import com.jobplanet.kr.android.databinding.FragmentCompanyBinding
 import com.jobplanet.kr.android.ui.adapter.CompanyAdapter
 import com.jobplanet.kr.android.util.CommonItemDecoration
 
 class CompanyFragment: BaseFragment<FragmentCompanyBinding>(R.layout.fragment_company) {
+
+    companion object {
+        val SEARCH_WORD = "searchWord"
+    }
 
     private val companyAdapter by lazy { CompanyAdapter() }
 
@@ -33,5 +38,16 @@ class CompanyFragment: BaseFragment<FragmentCompanyBinding>(R.layout.fragment_co
                 )
             }
         }
+    }
+
+    override fun setArguments(args: Bundle?) {
+        super.setArguments(args)
+//        args?.let { bundle ->
+//            bundle.getString(RecruteFragment.SEARCH_WORD)?.let { searchWord ->
+//                recruteCommonAdapter.searchCompanies(
+//                    filterWord = SearchFilterType.COMPANY.value,
+//                    searchWord = searchWord)
+//            }
+//        }
     }
 }
