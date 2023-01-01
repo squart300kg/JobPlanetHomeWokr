@@ -25,8 +25,8 @@ class RecruteViewModel @Inject constructor(
         job?.cancel()
         job = viewModelScope.launch {
             repository.getCompanies()
-                .catch {
-                    // TODO: 어떻게 처리할지 고민
+                .catch { e ->
+                    e.printStackTrace()
                 }
                 .collect { response ->
                     _recruteResponse.value = response.recruitItems.toMutableList().apply {

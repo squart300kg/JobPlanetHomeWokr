@@ -25,8 +25,8 @@ class CompanyViewModel @Inject constructor(
         job?.cancel()
         job = viewModelScope.launch {
             repository.getCompanies()
-                .catch {
-                    // TODO: 어떻게 처리할지 고민
+                .catch { e ->
+                    e.printStackTrace()
                 }
                 .collect { response ->
                     _companyResponse.value = response.cell_items.toMutableList().apply {

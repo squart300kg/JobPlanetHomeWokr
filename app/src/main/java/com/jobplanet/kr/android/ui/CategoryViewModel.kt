@@ -27,8 +27,8 @@ class CategoryViewModel @Inject constructor(
         job = viewModelScope.launch {
             repository.getCategories()
                 .flowOn(Dispatchers.IO)
-                .catch {
-                    // TODO: 어떻게 처리할지 고민
+                .catch { e ->
+                    e.printStackTrace()
                 }
                 .collect { response ->
                     _categoryResponse.value = response.item.toMutableList().apply {

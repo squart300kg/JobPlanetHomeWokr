@@ -17,15 +17,6 @@ import com.jobplanet.kr.android.util.BackButtonCloseHandler
 import com.jobplanet.kr.android.util.CommonItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO:
-//  3. 테스트 코드 작성
-//  4. ItemDecoration재설계
-//  5. viewModel내 conver로직 부모로 뺄 것
-//  6. ResponseType의 depth가 너무 깊다. 더 직관적인 처리 방법이 없을까?
-//  7. 시간나면 viewDeviderLine공통으로 빼기
-//  8. border는 어떻게 공통화하면 좋을지?
-
-
 @AndroidEntryPoint
 class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
