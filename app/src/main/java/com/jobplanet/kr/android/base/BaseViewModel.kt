@@ -1,5 +1,6 @@
 package com.jobplanet.kr.android.base
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,6 +16,8 @@ open class BaseViewModel: ViewModel() {
         get() = _isLoading
 
     protected var job: Job? = null
+
+    lateinit var clickListener: View.OnClickListener
 
     override fun onCleared() {
         super.onCleared()

@@ -24,8 +24,6 @@ class CompanyViewModel @Inject constructor(
     val companyResponse: LiveData<MutableList<CompanyResponse.CellItem>>
         get() = _companyResponse
 
-    lateinit var clickListener: View.OnClickListener
-
     fun getCompanies() {
         job?.cancel()
         job = viewModelScope.launch {

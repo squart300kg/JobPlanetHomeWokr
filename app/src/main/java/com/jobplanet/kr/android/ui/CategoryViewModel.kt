@@ -23,8 +23,6 @@ class CategoryViewModel @Inject constructor(
     val categoryResponse: LiveData<MutableList<SearchCategoryResponse.SearchCategory>>
         get() = _categoryResponse
 
-    lateinit var clickListener: OnClickListener
-
     fun getSearchCategorys() {
         job?.cancel()
         job = viewModelScope.launch {

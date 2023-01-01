@@ -18,8 +18,6 @@ import com.jobplanet.kr.android.util.CommonItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO:
-//  0. 리사이클러뷰 공통 사용 고민
-//  1. buildGradle의 import 라이브러리 신기술 찾아보고 적용
 //  3. 테스트 코드 작성
 //  4. ItemDecoration재설계
 //  5. viewModel내 conver로직 부모로 뺄 것
@@ -36,8 +34,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val categoryAdapter by lazy { CategoryAdapter() }
 
     private val categoryViewModel: CategoryViewModel by viewModels()
-    private val companyViewModel: CompanyViewModel by viewModels()
-    private val recruteViewModel: RecruteViewModel by viewModels()
 
     private val recruteFragment = RecruteFragment()
     private val companyFragment = CompanyFragment()

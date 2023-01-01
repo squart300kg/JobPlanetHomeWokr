@@ -22,8 +22,6 @@ class RecruteViewModel @Inject constructor(
     val recruteResponse: LiveData<MutableList<CommonRecruteItem>>
         get() = _recruteResponse
 
-    lateinit var clickListener: View.OnClickListener
-
     fun getRecrutes() {
         String
         job?.cancel()
