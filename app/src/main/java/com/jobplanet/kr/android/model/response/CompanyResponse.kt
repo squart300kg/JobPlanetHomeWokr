@@ -28,7 +28,7 @@ data class CompanyResponse(
         val logoPath: String,
         @Expose
         @SerializedName("name")
-        val name: String,
+        val name: String?,
         @Expose
         @SerializedName("pros")
         val pros: String?,

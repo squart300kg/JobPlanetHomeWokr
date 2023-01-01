@@ -1,13 +1,11 @@
 package com.jobplanet.kr.android.ui.adapter
 
-import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.BR
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.constant.LayoutType
-import com.jobplanet.kr.android.constant.SearchFilterType
 import com.jobplanet.kr.android.databinding.ItemRecruteBinding
 import com.jobplanet.kr.android.model.response.CommonRecruteItem
 import com.jobplanet.kr.android.util.CommonItemDecoration
@@ -51,22 +49,13 @@ class RecruteCommonAdapter(
         filterdItems.clear()
         filterdItems.addAll(
             items.filter { recruitItem ->
-                when (filterWord) {
-                    SearchFilterType.COMPANY.value -> {
-                        recruitItem.company.name.contains(searchWord)
-                    }
-                    SearchFilterType.RECRUTE.value -> {
-                        recruitItem.title.contains(searchWord)
-                    }
-                    else -> throw IllegalArgumentException("search filter type error")
-                }
+                recruitItem.title.contains(searchWord)
             }
         )
         notifyDataSetChanged()
     }
 
     fun submit(response: List<CommonRecruteItem>) {
-        Log.i("submit", "$response")
         items.clear()
         items.addAll(response)
         notifyDataSetChanged()

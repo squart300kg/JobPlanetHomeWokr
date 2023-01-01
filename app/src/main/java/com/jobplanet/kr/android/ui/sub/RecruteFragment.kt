@@ -19,7 +19,7 @@ class RecruteFragment: BaseFragment<FragmentRecruteBinding>(R.layout.fragment_re
         val SEARCH_WORD = "searchWord"
     }
 
-    private val recruteCommonAdapter by lazy { RecruteCommonAdapter() }
+    val recruteCommonAdapter by lazy { RecruteCommonAdapter() }
 
     private val recruteViewModel: RecruteViewModel by activityViewModels()
 

@@ -1,6 +1,7 @@
 package com.jobplanet.kr.android.ui.sub
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
@@ -17,7 +18,7 @@ class CompanyFragment: BaseFragment<FragmentCompanyBinding>(R.layout.fragment_co
         val SEARCH_WORD = "searchWord"
     }
 
-    private val companyAdapter by lazy { CompanyAdapter() }
+    val companyAdapter by lazy { CompanyAdapter() }
 
     private val companyViewModel: CompanyViewModel by activityViewModels()
 
@@ -33,8 +34,7 @@ class CompanyFragment: BaseFragment<FragmentCompanyBinding>(R.layout.fragment_co
                 addItemDecoration(
                     CommonItemDecoration(
                         top = 24,
-                        orientation = LinearLayout.VERTICAL
-                    )
+                        orientation = LinearLayout.VERTICAL)
                 )
             }
         }
@@ -42,12 +42,12 @@ class CompanyFragment: BaseFragment<FragmentCompanyBinding>(R.layout.fragment_co
 
     override fun setArguments(args: Bundle?) {
         super.setArguments(args)
-//        args?.let { bundle ->
-//            bundle.getString(RecruteFragment.SEARCH_WORD)?.let { searchWord ->
-//                recruteCommonAdapter.searchCompanies(
-//                    filterWord = SearchFilterType.COMPANY.value,
-//                    searchWord = searchWord)
-//            }
-//        }
+        args?.let { bundle ->
+            bundle.getString(RecruteFragment.SEARCH_WORD)?.let { searchWord ->
+                companyAdapter.searchCompanies(
+                    filterWord = SearchFilterType.COMPANY.value,
+                    searchWord = searchWord)
+            }
+        }
     }
 }

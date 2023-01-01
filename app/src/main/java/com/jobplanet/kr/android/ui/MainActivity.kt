@@ -46,6 +46,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val companyFragment = CompanyFragment()
 
     private var selectedFilter = ""
+    private var searchWord = ""
 
     private val clickListener = View.OnClickListener { view ->
         when (view.id) {
@@ -58,7 +59,15 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 }
 
                 addFragment(type = selectedFilter)
-//                searchCompanies()
+
+                recruteFragment.recruteCommonAdapter.searchCompanies(
+                    searchWord = searchWord,
+                    filterWord = selectedFilter
+                )
+                companyFragment.companyAdapter.searchCompanies(
+                    searchWord = searchWord,
+                    filterWord = selectedFilter
+                )
             }
         }
     }
@@ -86,11 +95,13 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
             layoutCommonSearch.etSearch.apply {
                 checkSearchWord { searchWord ->
+                    this@MainActivity.searchWord = "$searchWord"
+
                     recruteFragment.arguments = Bundle().apply {
                         putString(RecruteFragment.SEARCH_WORD, "$searchWord")
                     }
                     companyFragment.arguments = Bundle().apply {
-                        putString(RecruteFragment.SEARCH_WORD, "$searchWord")
+                        putString(CompanyFragment.SEARCH_WORD, "$searchWord")
                     }
                 }
             }

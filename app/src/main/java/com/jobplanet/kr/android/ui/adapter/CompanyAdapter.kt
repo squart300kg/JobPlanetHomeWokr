@@ -1,5 +1,6 @@
 package com.jobplanet.kr.android.ui.adapter
 
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -8,14 +9,22 @@ import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseViewHolder
 import com.jobplanet.kr.android.constant.CompanyType
 import com.jobplanet.kr.android.constant.LayoutType
+import com.jobplanet.kr.android.constant.SearchFilterType
 import com.jobplanet.kr.android.databinding.ItemCompanyBinding
 import com.jobplanet.kr.android.databinding.ItemRecruteCellTypeBinding
+import com.jobplanet.kr.android.model.response.CommonRecruteItem
 import com.jobplanet.kr.android.model.response.CompanyResponse
 import com.jobplanet.kr.android.util.CommonItemDecoration
 
 class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private val recruteCommonAdapter: RecruteCommonAdapter by lazy { RecruteCommonAdapter(layoutType = LayoutType.LINEAR_HORIZONTAL) }
+
     private val items: MutableList<CompanyResponse.CellItem> = mutableListOf()
+    private var filterdItems: MutableList<CompanyResponse.CellItem> = mutableListOf()
+
+    private var filterWord = ""
+    private var searchWord = ""
 
     override fun getItemViewType(position: Int): Int {
         return CompanyType.valueOf(items[position].cellType).ordinal
@@ -44,14 +53,34 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is CompanyViewHolder -> holder.bindItem(items[position])
-            is TodayRecommentRecruteViewHolder -> holder.bindItem(items[position])
-            is ReviewViewHolder -> holder.bindItem(items[position])
+            is CompanyViewHolder -> holder.bindItem(getItemsBySearchWord()[position])
+            is TodayRecommentRecruteViewHolder -> holder.bindItem(getItemsBySearchWord()[position])
+            is ReviewViewHolder -> holder.bindItem(getItemsBySearchWord()[position])
         }
     }
 
     override fun getItemCount(): Int {
-        return items.count()
+        return getItemsBySearchWord().count()
+    }
+
+    private fun getItemsBySearchWord(): MutableList<CompanyResponse.CellItem> {
+        return if (searchWord.isEmpty()) items
+               else filterdItems
+    }
+
+    fun searchCompanies(filterWord: String, searchWord: String) {
+        this.filterWord = filterWord
+        this.searchWord = searchWord
+
+        filterdItems.clear()
+        filterdItems.addAll(
+            items.filter { recruitItem ->
+                recruitItem.name?.let { companyName ->
+                    companyName.contains(searchWord)
+                } ?: run { false }
+            }
+        )
+        notifyDataSetChanged()
     }
 
     fun submit(response: List<CompanyResponse.CellItem>) {
@@ -64,10 +93,7 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         itemId: Int,
         parent: ViewGroup,
         layoutRes: Int
-    ): BaseViewHolder<CompanyResponse.CellItem, ItemCompanyBinding>(itemId, parent, layoutRes) {
-        // TODO: 클릭이벤트 대비하여 남겨둠 추후 필요없으면 제거
-        fun initClickTag() {  }
-    }
+    ): BaseViewHolder<CompanyResponse.CellItem, ItemCompanyBinding>(itemId, parent, layoutRes)
 
     inner class TodayRecommentRecruteViewHolder(
         itemId: Int,
@@ -78,7 +104,7 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             with (itemBinding) {
                 rvRecrute.apply {
                     setHasFixedSize(true)
-                    adapter = RecruteCommonAdapter(layoutType = LayoutType.LINEAR_HORIZONTAL)
+                    adapter = recruteCommonAdapter
                     addItemDecoration(
                         CommonItemDecoration(
                             firstItemMargin = 20,
@@ -88,25 +114,17 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     )
                 }
             }
-
         }
-
-        // TODO: 클릭이벤트 대비하여 남겨둠 추후 필요없으면 제거
-        fun initClickTag() {  }
     }
 
     /**
-     * APi로 넘겨받는 cellType중, CELL_TYPE_REVIEW에 관한 viewHolder입니다.
+     * CELL_TYPE_REVIEW에 관한 viewHolder입니다.
      * 해당 부분은 디자인 시안에 보이지 않아 임의로 데이터를 바인딩하여 구현하였습니다.
       */
     inner class ReviewViewHolder(
         itemId: Int,
         parent: ViewGroup,
         layoutRes: Int
-    ): BaseViewHolder<CompanyResponse.CellItem, ItemCompanyBinding>(itemId, parent, layoutRes) {
-
-        // TODO: 클릭이벤트 대비하여 남겨둠 추후 필요없으면 제거
-        fun initClickTag() {  }
-    }
+    ): BaseViewHolder<CompanyResponse.CellItem, ItemCompanyBinding>(itemId, parent, layoutRes)
 
 }
