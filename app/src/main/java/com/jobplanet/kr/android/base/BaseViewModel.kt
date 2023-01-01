@@ -14,7 +14,9 @@ open class BaseViewModel: ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        // 메모리 누수 방지
+        /**
+         *  메모리 누수 방지코드입니다.
+         */
         viewModelScope.cancel()
     }
 

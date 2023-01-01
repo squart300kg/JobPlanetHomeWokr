@@ -10,9 +10,7 @@ import com.jobplanet.kr.android.databinding.ActivityMainBinding
 import com.jobplanet.kr.android.ext.checkSearchWord
 import com.jobplanet.kr.android.ui.adapter.CategoryAdapter
 import com.jobplanet.kr.android.ui.sub.CompanyFragment
-import com.jobplanet.kr.android.ui.sub.CompanyViewModel
 import com.jobplanet.kr.android.ui.sub.RecruteFragment
-import com.jobplanet.kr.android.ui.sub.RecruteViewModel
 import com.jobplanet.kr.android.util.BackButtonCloseHandler
 import com.jobplanet.kr.android.util.CommonItemDecoration
 import dagger.hilt.android.AndroidEntryPoint

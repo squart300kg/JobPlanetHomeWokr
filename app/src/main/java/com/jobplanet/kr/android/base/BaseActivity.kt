@@ -29,7 +29,9 @@ open class BaseActivity<T: ViewDataBinding>(
 
     override fun onDestroy() {
         super.onDestroy()
-        // 메모리 누수 방지
+        /**
+         * 메모리 누수 방지코드입니다.
+         */
         _binding = null
     }
 }

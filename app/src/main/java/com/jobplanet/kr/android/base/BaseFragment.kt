@@ -32,7 +32,9 @@ open class BaseFragment<T: ViewDataBinding>(
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // 메모리 누수 방지
+        /**
+         * 메모리 누수 방지코드입니다.
+         */
         _binding = null
     }
 

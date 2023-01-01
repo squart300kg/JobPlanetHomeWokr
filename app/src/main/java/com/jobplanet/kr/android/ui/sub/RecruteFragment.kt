@@ -1,12 +1,9 @@
 package com.jobplanet.kr.android.ui.sub
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenCreated
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseFragment
 import com.jobplanet.kr.android.constant.SearchFilterType
@@ -15,7 +12,6 @@ import com.jobplanet.kr.android.ui.CompanyDetailActivity
 import com.jobplanet.kr.android.ui.adapter.RecruteCommonAdapter
 import com.jobplanet.kr.android.util.CommonGridItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecruteFragment: BaseFragment<FragmentRecruteBinding>(R.layout.fragment_recrute) {
@@ -51,15 +47,12 @@ class RecruteFragment: BaseFragment<FragmentRecruteBinding>(R.layout.fragment_re
         }
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        lifecycleScope.launch {
-            whenCreated {
-                recruteViewModel.clickListener = clickListener
-                recruteViewModel.getRecrutes()
-            }
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        recruteViewModel.clickListener = clickListener
+        recruteViewModel.getRecrutes()
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
