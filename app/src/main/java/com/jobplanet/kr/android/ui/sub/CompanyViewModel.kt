@@ -1,15 +1,12 @@
 package com.jobplanet.kr.android.ui.sub
 
-import android.util.Log
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jobplanet.kr.android.base.BaseViewModel
+import com.jobplanet.kr.android.model.response.CommonRecruteItem
 import com.jobplanet.kr.android.model.response.CompanyResponse
-import com.jobplanet.kr.android.model.response.RecrutesResponse
 import com.jobplanet.kr.android.repository.CompanyRepository
-import com.jobplanet.kr.android.repository.RecruteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
@@ -43,4 +40,13 @@ class CompanyViewModel @Inject constructor(
                 }
         }
     }
+
+    fun getCellItemByIndex(index: Int): CompanyResponse.CellItem? {
+        return companyResponse.value?.get(index)
+    }
+
+    fun getRecruteItemByIndex(rowIndex: Int, colIndex: Int): CommonRecruteItem? {
+        return companyResponse.value?.get(rowIndex)?.recommendRecruit?.get(colIndex)
+    }
+
 }

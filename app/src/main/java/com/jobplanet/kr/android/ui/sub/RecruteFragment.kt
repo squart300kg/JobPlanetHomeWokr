@@ -37,12 +37,14 @@ class RecruteFragment: BaseFragment<FragmentRecruteBinding>(R.layout.fragment_re
                  */
                 val index = (view.tag as IntArray)[0]
                 Intent(requireActivity(), CompanyDetailActivity::class.java).apply {
-                    putExtra(CompanyDetailActivity.THUMBNAIL, recruteViewModel.recruteResponse.value?.get(index)?.imageUrl ?: "")
-                    putExtra(CompanyDetailActivity.COMPANY, recruteViewModel.recruteResponse.value?.get(index)?.company?.name ?: "")
-                    putExtra(CompanyDetailActivity.TITLE, recruteViewModel.recruteResponse.value?.get(index)?.title ?: "")
-                    putExtra(CompanyDetailActivity.RATING, recruteViewModel.recruteResponse.value?.get(index)?.company?.ratings?.map { it.rating }?.max().toString())
-                    putExtra(CompanyDetailActivity.REWARD, recruteViewModel.recruteResponse.value?.get(index)?.reward.toString())
-                    putExtra(CompanyDetailActivity.APPEAL, recruteViewModel.recruteResponse.value?.get(index)?.appeal ?: "")
+                    recruteViewModel.getRecruteItemByIndex(index)?.also { recruteItem ->
+                        putExtra(CompanyDetailActivity.THUMBNAIL, recruteItem.imageUrl)
+                        putExtra(CompanyDetailActivity.COMPANY, recruteItem.company.name)
+                        putExtra(CompanyDetailActivity.TITLE, recruteItem.title)
+                        putExtra(CompanyDetailActivity.RATING, recruteItem.company.ratings.map { it.rating }.max().toString())
+                        putExtra(CompanyDetailActivity.REWARD, recruteItem.reward.toString())
+                        putExtra(CompanyDetailActivity.APPEAL, recruteItem.appeal)
+                    }
                     startActivity(this)
                 }
             }

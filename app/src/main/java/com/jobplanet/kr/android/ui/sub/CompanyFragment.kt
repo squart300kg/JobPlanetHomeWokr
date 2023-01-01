@@ -2,7 +2,6 @@ package com.jobplanet.kr.android.ui.sub
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
@@ -31,10 +30,13 @@ class CompanyFragment: BaseFragment<FragmentCompanyBinding>(R.layout.fragment_co
                  * 상세화면 구현 로직입니다.
                  * 해당 부분은 안내의 허락에 따라 임의로 개발하였음을 말씀드립니다.
                  */
+                val index = view.tag as Int
                 Intent(requireActivity(), CompanyDetailActivity::class.java).apply {
-                    putExtra(CompanyDetailActivity.THUMBNAIL, companyViewModel.companyResponse.value?.get(view.tag as Int)?.logoPath ?: "")
-                    putExtra(CompanyDetailActivity.TITLE, companyViewModel.companyResponse.value?.get(view.tag as Int)?.name ?: "")
-                    putExtra(CompanyDetailActivity.RATING, companyViewModel.companyResponse.value?.get(view.tag as Int)?.rateTotalAvg.toString())
+                    companyViewModel.getCellItemByIndex(index)?.also { cellItem ->
+                        putExtra(CompanyDetailActivity.THUMBNAIL, cellItem.logoPath)
+                        putExtra(CompanyDetailActivity.TITLE, cellItem.name ?: "")
+                        putExtra(CompanyDetailActivity.RATING, cellItem.rateTotalAvg.toString())
+                    }
                     startActivity(this)
                 }
             }
@@ -43,14 +45,17 @@ class CompanyFragment: BaseFragment<FragmentCompanyBinding>(R.layout.fragment_co
                  * 상세화면 구현 로직입니다.
                  * 해당 부분은 안내의 허락에 따라 임의로 개발하였음을 말씀드립니다.
                  */
-                val tag = view.tag as IntArray
+                val rowIndex = (view.tag as IntArray)[0]
+                val colIndex = (view.tag as IntArray)[1]
                 Intent(requireActivity(), CompanyDetailActivity::class.java).apply {
-                    putExtra(CompanyDetailActivity.THUMBNAIL, companyViewModel.companyResponse.value?.get(tag[0])?.recommendRecruit?.get(tag[1])?.imageUrl ?: "")
-                    putExtra(CompanyDetailActivity.COMPANY, companyViewModel.companyResponse.value?.get(tag[0])?.recommendRecruit?.get(tag[1])?.company?.name ?: "")
-                    putExtra(CompanyDetailActivity.TITLE, companyViewModel.companyResponse.value?.get(tag[0])?.recommendRecruit?.get(tag[1])?.title ?: "")
-                    putExtra(CompanyDetailActivity.RATING, companyViewModel.companyResponse.value?.get(tag[0])?.recommendRecruit?.get(tag[1])?.company?.ratings?.map { it.rating }?.max().toString())
-                    putExtra(CompanyDetailActivity.REWARD, companyViewModel.companyResponse.value?.get(tag[0])?.recommendRecruit?.get(tag[1])?.reward.toString())
-                    putExtra(CompanyDetailActivity.APPEAL, companyViewModel.companyResponse.value?.get(tag[0])?.recommendRecruit?.get(tag[1])?.appeal ?: "")
+                    companyViewModel.getRecruteItemByIndex(rowIndex, colIndex)?.also { recruteItem ->
+                        putExtra(CompanyDetailActivity.THUMBNAIL, recruteItem.imageUrl)
+                        putExtra(CompanyDetailActivity.COMPANY, recruteItem.company.name)
+                        putExtra(CompanyDetailActivity.TITLE, recruteItem.title)
+                        putExtra(CompanyDetailActivity.RATING, recruteItem.company.ratings.map { it.rating }.max().toString())
+                        putExtra(CompanyDetailActivity.REWARD, recruteItem.reward.toString())
+                        putExtra(CompanyDetailActivity.APPEAL, recruteItem.appeal)
+                    }
                     startActivity(this)
                 }
             }
