@@ -100,7 +100,7 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         layoutRes: Int
     ): BaseViewHolder<CompanyResponse.CellItem, ItemCompanyBinding>(itemId, parent, layoutRes) {
         fun initClickTag() {
-            itemBinding.companyRootView.tag = absoluteAdapterPosition
+            itemBinding.companyRootView.tag = getItemsBySearchWord()[absoluteAdapterPosition].name
         }
     }
 
@@ -126,7 +126,6 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
 
         fun initClickTag() {
-            itemBinding.container.tag = absoluteAdapterPosition
             itemBinding.rvRecrute.tag = absoluteAdapterPosition
         }
 

@@ -41,12 +41,12 @@ class CompanyViewModel @Inject constructor(
         }
     }
 
-    fun getCellItemByIndex(index: Int): CompanyResponse.CellItem? {
-        return companyResponse.value?.get(index)
+    fun getCellItemByName(companyName: String): CompanyResponse.CellItem? {
+        return companyResponse.value?.find { it.name == companyName }
     }
 
-    fun getRecruteItemByIndex(rowIndex: Int, colIndex: Int): CommonRecruteItem? {
-        return companyResponse.value?.get(rowIndex)?.recommendRecruit?.get(colIndex)
+    fun getRecruteItem(rowIndex: Int, recruteId: Int): CommonRecruteItem? {
+        return companyResponse.value?.get(rowIndex)?.recommendRecruit?.find { it.id == recruteId }
     }
 
 }

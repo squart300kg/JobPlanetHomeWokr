@@ -46,7 +46,7 @@ class RecruteCommonAdapter(
 
     private fun getItemsBySearchWord(): MutableList<CommonRecruteItem> {
         return if (searchWord.isEmpty()) items
-        else filterdItems
+               else filterdItems
     }
 
     fun searchCompanies(filterWord: String, searchWord: String) {
@@ -94,9 +94,9 @@ class RecruteCommonAdapter(
 
         fun initClickTag() {
             val tag = if (layoutType == LayoutType.INNER_LINEAR_HORIZONTAL) {
-                intArrayOf(ownerRecyclerView.tag as Int, absoluteAdapterPosition)
+                intArrayOf(ownerRecyclerView.tag as Int, getItemsBySearchWord()[absoluteAdapterPosition].id)
             } else {
-                intArrayOf(absoluteAdapterPosition)
+                intArrayOf(getItemsBySearchWord()[absoluteAdapterPosition].id)
             }
             itemBinding.recruteRootView.tag = tag
         }

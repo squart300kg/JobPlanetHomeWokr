@@ -35,9 +35,9 @@ class RecruteFragment: BaseFragment<FragmentRecruteBinding>(R.layout.fragment_re
                  * 상세화면 구현 로직입니다.
                  * 해당 부분은 안내의 허락에 따라 임의로 개발하였음을 말씀드립니다.
                  */
-                val index = (view.tag as IntArray)[0]
+                val recruteId = (view.tag as IntArray)[0]
                 Intent(requireActivity(), CompanyDetailActivity::class.java).apply {
-                    recruteViewModel.getRecruteItemByIndex(index)?.also { recruteItem ->
+                    recruteViewModel.getRecruteItemById(recruteId)?.also { recruteItem ->
                         putExtra(CompanyDetailActivity.THUMBNAIL, recruteItem.imageUrl)
                         putExtra(CompanyDetailActivity.COMPANY, recruteItem.company.name)
                         putExtra(CompanyDetailActivity.TITLE, recruteItem.title)

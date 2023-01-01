@@ -30,9 +30,9 @@ class CompanyFragment: BaseFragment<FragmentCompanyBinding>(R.layout.fragment_co
                  * 상세화면 구현 로직입니다.
                  * 해당 부분은 안내의 허락에 따라 임의로 개발하였음을 말씀드립니다.
                  */
-                val index = view.tag as Int
+                val companyName = view.tag as String
                 Intent(requireActivity(), CompanyDetailActivity::class.java).apply {
-                    companyViewModel.getCellItemByIndex(index)?.also { cellItem ->
+                    companyViewModel.getCellItemByName(companyName)?.also { cellItem ->
                         putExtra(CompanyDetailActivity.THUMBNAIL, cellItem.logoPath)
                         putExtra(CompanyDetailActivity.TITLE, cellItem.name ?: "")
                         putExtra(CompanyDetailActivity.RATING, cellItem.rateTotalAvg.toString())
@@ -46,9 +46,9 @@ class CompanyFragment: BaseFragment<FragmentCompanyBinding>(R.layout.fragment_co
                  * 해당 부분은 안내의 허락에 따라 임의로 개발하였음을 말씀드립니다.
                  */
                 val rowIndex = (view.tag as IntArray)[0]
-                val colIndex = (view.tag as IntArray)[1]
+                val colRecruteId = (view.tag as IntArray)[1]
                 Intent(requireActivity(), CompanyDetailActivity::class.java).apply {
-                    companyViewModel.getRecruteItemByIndex(rowIndex, colIndex)?.also { recruteItem ->
+                    companyViewModel.getRecruteItem(rowIndex, colRecruteId)?.also { recruteItem ->
                         putExtra(CompanyDetailActivity.THUMBNAIL, recruteItem.imageUrl)
                         putExtra(CompanyDetailActivity.COMPANY, recruteItem.company.name)
                         putExtra(CompanyDetailActivity.TITLE, recruteItem.title)

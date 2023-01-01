@@ -38,8 +38,8 @@ class RecruteViewModel @Inject constructor(
         }
     }
 
-    fun getRecruteItemByIndex(index: Int): CommonRecruteItem? {
-        return recruteResponse.value?.get(index)
+    fun getRecruteItemById(id: Int): CommonRecruteItem? {
+        return recruteResponse.value?.find { it.id == id }
     }
 
 }
