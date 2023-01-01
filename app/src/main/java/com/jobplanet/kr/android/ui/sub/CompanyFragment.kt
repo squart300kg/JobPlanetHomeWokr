@@ -39,6 +39,10 @@ class CompanyFragment: BaseFragment<FragmentCompanyBinding>(R.layout.fragment_co
                 }
             }
             R.id.recruteRootView -> {
+                /**
+                 * 상세화면 구현 로직입니다.
+                 * 해당 부분은 안내의 허락에 따라 임의로 개발하였음을 말씀드립니다.
+                 */
                 val tag = view.tag as IntArray
                 Intent(requireActivity(), CompanyDetailActivity::class.java).apply {
                     putExtra(CompanyDetailActivity.THUMBNAIL, companyViewModel.companyResponse.value?.get(tag[0])?.recommendRecruit?.get(tag[1])?.imageUrl ?: "")

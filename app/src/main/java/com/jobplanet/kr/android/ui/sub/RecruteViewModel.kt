@@ -1,12 +1,10 @@
 package com.jobplanet.kr.android.ui.sub
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jobplanet.kr.android.base.BaseViewModel
 import com.jobplanet.kr.android.model.response.CommonRecruteItem
-import com.jobplanet.kr.android.model.response.RecrutesResponse
 import com.jobplanet.kr.android.repository.RecruteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
