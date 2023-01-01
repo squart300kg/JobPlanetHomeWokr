@@ -1,5 +1,6 @@
 package com.jobplanet.kr.android.ui.adapter
 
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.BR
@@ -14,11 +15,18 @@ class RecruteCommonAdapter(
     private val layoutType: LayoutType = LayoutType.GRID
 ) : RecyclerView.Adapter<RecruteCommonAdapter.RecruteViewHolder>() {
 
+    private lateinit var ownerRecyclerView: RecyclerView
+
     private val items: MutableList<CommonRecruteItem> = mutableListOf()
     private var filterdItems: MutableList<CommonRecruteItem> = mutableListOf()
 
     private var filterWord = ""
     private var searchWord = ""
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        ownerRecyclerView = recyclerView
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecruteCommonAdapter.RecruteViewHolder {
         return RecruteViewHolder(
@@ -68,7 +76,7 @@ class RecruteCommonAdapter(
     ): BaseViewHolder<CommonRecruteItem, ItemRecruteBinding>(itemId, parent, layoutRes) {
         init {
             if (layoutType == LayoutType.LINEAR_HORIZONTAL) {
-                itemBinding.rootView.apply { layoutParams.width = itemView.resources.getDimensionPixelSize(R.dimen.companyHorizontalCellTypeWidth) }
+                itemBinding.recruteRootView.apply { layoutParams.width = itemView.resources.getDimensionPixelSize(R.dimen.companyHorizontalCellTypeWidth) }
             }
 
             itemBinding.rvCompanyAppealCategory.apply {
@@ -85,8 +93,14 @@ class RecruteCommonAdapter(
             }
         }
 
-        // TODO: 클릭이벤트 대비하여 남겨둠 추후 필요없으면 제거
-        fun initClickTag() {  }
+        fun initClickTag() {
+            val tag = if (layoutType == LayoutType.LINEAR_HORIZONTAL) {
+                intArrayOf(ownerRecyclerView.tag as Int, absoluteAdapterPosition)
+            } else {
+                intArrayOf(absoluteAdapterPosition)
+            }
+            itemBinding.recruteRootView.tag = tag
+        }
     }
 
 }

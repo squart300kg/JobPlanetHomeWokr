@@ -1,16 +1,21 @@
 package com.jobplanet.kr.android.ui.sub
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenCreated
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseFragment
 import com.jobplanet.kr.android.constant.SearchFilterType
 import com.jobplanet.kr.android.databinding.FragmentRecruteBinding
+import com.jobplanet.kr.android.ui.CompanyDetailActivity
 import com.jobplanet.kr.android.ui.adapter.RecruteCommonAdapter
 import com.jobplanet.kr.android.util.CommonGridItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecruteFragment: BaseFragment<FragmentRecruteBinding>(R.layout.fragment_recrute) {
@@ -23,6 +28,36 @@ class RecruteFragment: BaseFragment<FragmentRecruteBinding>(R.layout.fragment_re
 
     private val recruteViewModel: RecruteViewModel by activityViewModels()
 
+    val clickListener = View.OnClickListener { view ->
+        when (view.id) {
+            R.id.recruteRootView -> {
+                /**
+                 * 상세화면 구현 로직입니다.
+                 * 해당 부분은 안내의 허락에 따라 임의로 개발하였음을 말씀드립니다.
+                 */
+                val index = (view.tag as IntArray)[0]
+                Intent(requireActivity(), CompanyDetailActivity::class.java).apply {
+                    putExtra(CompanyDetailActivity.THUMBNAIL, recruteViewModel.recruteResponse.value?.get(index)?.imageUrl ?: "")
+                    putExtra(CompanyDetailActivity.COMPANY, recruteViewModel.recruteResponse.value?.get(index)?.company?.name ?: "")
+                    putExtra(CompanyDetailActivity.TITLE, recruteViewModel.recruteResponse.value?.get(index)?.title ?: "")
+                    putExtra(CompanyDetailActivity.RATING, recruteViewModel.recruteResponse.value?.get(index)?.company?.ratings?.map { it.rating }?.max().toString())
+                    putExtra(CompanyDetailActivity.REWARD, recruteViewModel.recruteResponse.value?.get(index)?.reward.toString())
+                    putExtra(CompanyDetailActivity.APPEAL, recruteViewModel.recruteResponse.value?.get(index)?.appeal ?: "")
+                    startActivity(this)
+                }
+            }
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        lifecycleScope.launch {
+            whenCreated {
+                recruteViewModel.clickListener = clickListener
+                recruteViewModel.getRecrutes()
+            }
+        }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

@@ -3,13 +3,11 @@ package com.jobplanet.kr.android.ui
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenCreated
-import com.jobplanet.kr.android.ext.checkSearchWord
 import com.jobplanet.kr.android.R
 import com.jobplanet.kr.android.base.BaseActivity
 import com.jobplanet.kr.android.constant.SearchFilterType
 import com.jobplanet.kr.android.databinding.ActivityMainBinding
+import com.jobplanet.kr.android.ext.checkSearchWord
 import com.jobplanet.kr.android.ui.adapter.CategoryAdapter
 import com.jobplanet.kr.android.ui.sub.CompanyFragment
 import com.jobplanet.kr.android.ui.sub.CompanyViewModel
@@ -18,7 +16,6 @@ import com.jobplanet.kr.android.ui.sub.RecruteViewModel
 import com.jobplanet.kr.android.util.BackButtonCloseHandler
 import com.jobplanet.kr.android.util.CommonItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 // TODO:
 //  0. 리사이클러뷰 공통 사용 고민
@@ -119,18 +116,9 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
         }
 
-        lifecycleScope.launch {
-            whenCreated {
-                categoryViewModel.clickListener = clickListener
-                categoryViewModel.getSearchCategorys()
-            }
-            recruteFragment.whenCreated {
-                recruteViewModel.getRecrutes()
-            }
-            companyFragment.whenCreated {
-                companyViewModel.getCompanies()
-            }
-        }
+        categoryViewModel.clickListener = clickListener
+        categoryViewModel.getSearchCategorys()
+
     }
 
     override fun onBackPressed() {

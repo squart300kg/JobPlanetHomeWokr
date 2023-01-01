@@ -1,6 +1,7 @@
 package com.jobplanet.kr.android.ui.sub
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -23,7 +24,7 @@ class CompanyViewModel @Inject constructor(
     val companyResponse: LiveData<MutableList<CompanyResponse.CellItem>>
         get() = _companyResponse
 
-//    lateinit var clickListener: View.OnClickListener
+    lateinit var clickListener: View.OnClickListener
 
     fun getCompanies() {
         job?.cancel()
@@ -33,9 +34,15 @@ class CompanyViewModel @Inject constructor(
                     // TODO: 어떻게 처리할지 고민
                 }
                 .collect { response ->
-                    _companyResponse.value = response.cell_items.toMutableList()
+                    _companyResponse.value = response.cell_items.toMutableList().apply {
+                        map { companyItem ->
+                            companyItem.clickListener = clickListener
+                            companyItem.recommendRecruit?.map { recruteItem ->
+                                recruteItem.clickListener = clickListener
+                            }
+                        }
+                    }
                 }
         }
-
     }
 }

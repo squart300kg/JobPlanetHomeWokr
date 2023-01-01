@@ -1,5 +1,6 @@
 package com.jobplanet.kr.android.model.response
 
+import android.view.View
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -37,7 +38,7 @@ data class CompanyResponse(
         val rateTotalAvg: Double,
         @Expose
         @SerializedName("recommend_recruit")
-        val recommendRecruit: List<CommonRecruteItem>,
+        val recommendRecruit: List<CommonRecruteItem>?,
         @Expose
         @SerializedName("review_summary")
         val reviewSummary: String,
@@ -49,6 +50,8 @@ data class CompanyResponse(
         val sectionTitle: String,
         @Expose
         @SerializedName("update_date")
-        val updateDate: String
+        val updateDate: String,
+
+        var clickListener: View.OnClickListener
     )
 }

@@ -1,5 +1,6 @@
 package com.jobplanet.kr.android.ui.sub
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -21,7 +22,7 @@ class RecruteViewModel @Inject constructor(
     val recruteResponse: LiveData<MutableList<CommonRecruteItem>>
         get() = _recruteResponse
 
-//    lateinit var clickListener: View.OnClickListener
+    lateinit var clickListener: View.OnClickListener
 
     fun getRecrutes() {
         String
@@ -34,7 +35,7 @@ class RecruteViewModel @Inject constructor(
                 .collect { response ->
                     _recruteResponse.value = response.recruitItems.toMutableList().apply {
                         map { searchCategory ->
-//                            searchCategory.clickListener = clickListener
+                            searchCategory.clickListener = clickListener
                         }
                     }
                 }

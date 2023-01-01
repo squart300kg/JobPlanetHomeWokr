@@ -6,6 +6,8 @@
             type="com.jobplanet.kr.android.model.response.CompanyResponse.CellItem" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/companyRootView"
+        android:onClick="@{(view) -> companyItem.clickListener.onClick(view)}"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:jobPlanet="http://schemas.android.com/tools"

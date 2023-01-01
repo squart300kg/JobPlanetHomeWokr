@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:jobPlanet="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="bundle"
+            type="android.os.Bundle" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivThumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            jobPlanet:loadImageRadius="@{bundle.getString(`thumbnail`)}"
+            jobPlanet:radius="@{8}" />
+
+        <TextView
+            android:id="@+id/tvCompanyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/ivThumbnail"
+            app:layout_constraintStart_toStartOf="parent"
+            jobPlanet:setText="@{bundle.getString(`company`)}" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tvCompanyName"
+            app:layout_constraintStart_toStartOf="parent"
+            jobPlanet:setText="@{bundle.getString(`title`)}" />
+
+        <TextView
+            android:id="@+id/tvRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            jobPlanet:setText="@{bundle.getString(`rating`)}" />
+
+        <TextView
+            android:id="@+id/tvReward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tvRating"
+            app:layout_constraintStart_toStartOf="parent"
+            jobPlanet:setText="@{bundle.getString(`reward`)}" />
+
+        <TextView
+            android:id="@+id/tvAppeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tvReward"
+            app:layout_constraintStart_toStartOf="parent"
+            jobPlanet:setText="@{bundle.getString(`appeal`)}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+

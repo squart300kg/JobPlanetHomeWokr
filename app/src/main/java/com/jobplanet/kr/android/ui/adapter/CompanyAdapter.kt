@@ -53,9 +53,18 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is CompanyViewHolder -> holder.bindItem(getItemsBySearchWord()[position])
-            is TodayRecommentRecruteViewHolder -> holder.bindItem(getItemsBySearchWord()[position])
-            is ReviewViewHolder -> holder.bindItem(getItemsBySearchWord()[position])
+            is CompanyViewHolder -> {
+                holder.bindItem(getItemsBySearchWord()[position])
+                holder.initClickTag()
+            }
+            is TodayRecommentRecruteViewHolder -> {
+                holder.bindItem(getItemsBySearchWord()[position])
+                holder.initClickTag()
+            }
+            is ReviewViewHolder -> {
+                holder.bindItem(getItemsBySearchWord()[position])
+                holder.initClickTag()
+            }
         }
     }
 
@@ -93,7 +102,11 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         itemId: Int,
         parent: ViewGroup,
         layoutRes: Int
-    ): BaseViewHolder<CompanyResponse.CellItem, ItemCompanyBinding>(itemId, parent, layoutRes)
+    ): BaseViewHolder<CompanyResponse.CellItem, ItemCompanyBinding>(itemId, parent, layoutRes) {
+        fun initClickTag() {
+            itemBinding.companyRootView.tag = absoluteAdapterPosition
+        }
+    }
 
     inner class TodayRecommentRecruteViewHolder(
         itemId: Int,
@@ -115,6 +128,12 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }
             }
         }
+
+        fun initClickTag() {
+            itemBinding.container.tag = absoluteAdapterPosition
+            itemBinding.rvRecrute.tag = absoluteAdapterPosition
+        }
+
     }
 
     /**
@@ -125,6 +144,10 @@ class CompanyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         itemId: Int,
         parent: ViewGroup,
         layoutRes: Int
-    ): BaseViewHolder<CompanyResponse.CellItem, ItemCompanyBinding>(itemId, parent, layoutRes)
+    ): BaseViewHolder<CompanyResponse.CellItem, ItemCompanyBinding>(itemId, parent, layoutRes) {
+        fun initClickTag() {
+            itemBinding.companyRootView.tag = absoluteAdapterPosition
+        }
+    }
 
 }
