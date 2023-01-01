@@ -1,6 +1,5 @@
 package com.jobplanet.kr.android.ui
 
-import android.view.View.OnClickListener
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope

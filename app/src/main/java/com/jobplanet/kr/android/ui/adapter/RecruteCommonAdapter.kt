@@ -1,6 +1,5 @@
 package com.jobplanet.kr.android.ui.adapter
 
-import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.kr.android.BR
@@ -75,7 +74,7 @@ class RecruteCommonAdapter(
         layoutRes: Int
     ): BaseViewHolder<CommonRecruteItem, ItemRecruteBinding>(itemId, parent, layoutRes) {
         init {
-            if (layoutType == LayoutType.LINEAR_HORIZONTAL) {
+            if (layoutType == LayoutType.INNER_LINEAR_HORIZONTAL) {
                 itemBinding.recruteRootView.apply { layoutParams.width = itemView.resources.getDimensionPixelSize(R.dimen.companyHorizontalCellTypeWidth) }
             }
 
@@ -94,7 +93,7 @@ class RecruteCommonAdapter(
         }
 
         fun initClickTag() {
-            val tag = if (layoutType == LayoutType.LINEAR_HORIZONTAL) {
+            val tag = if (layoutType == LayoutType.INNER_LINEAR_HORIZONTAL) {
                 intArrayOf(ownerRecyclerView.tag as Int, absoluteAdapterPosition)
             } else {
                 intArrayOf(absoluteAdapterPosition)

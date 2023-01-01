@@ -11,12 +11,4 @@ object DensityUtil {
             Resources.getSystem().displayMetrics
         ).toInt()
     }
-
-    fun pxToDp(px: Float): Int {
-        return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_PX,
-            px,
-            Resources.getSystem().displayMetrics
-        ).toInt()
-    }
 }
